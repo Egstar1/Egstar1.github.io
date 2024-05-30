@@ -3,7 +3,7 @@
 #aside-content .card-widget,
 .layout > .recent-posts .pagination > *:not(.space) {
   /* 第四个参数表示透明度，越小越透明 */
-  background: rgba(239,239,239,0.9);
+  background: rgba(239,239,239,0.98);
 }
 
 [data-theme="dark"]
