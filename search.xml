@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title>SQL注入 POC</title>
+      <link href="/post/735058fd.html"/>
+      <url>/post/735058fd.html</url>
+      
+        <content type="html"><![CDATA[<body><h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><pre class="line-numbers language-SQL" data-language="SQL"><code class="language-SQL">&#39;||case+when+1&#x3D;1+then+1+else+exp(20)+end||&#39;     #这个语句可以用来判断延时注入<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h2 id="Oracle"><a href="#Oracle" class="headerlink" title="Oracle"></a>Oracle</h2><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></body>]]></content>
+      
+      
+      <categories>
+          
+          <category> POC </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> SQL注入 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>App 检测</title>
+      <link href="/post/55c86894.html"/>
+      <url>/post/55c86894.html</url>
+      
+        <content type="html"><![CDATA[<body><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>如今越来越多企业开发了自己的 app 应用程序。之前我们更多的是掌握 web 的测试方法。现在是时候再拓展一下我们的 app 测试面了</p><h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><h2 id="一、App的基本应用信息"><a href="#一、App的基本应用信息" class="headerlink" title="一、App的基本应用信息"></a>一、App的基本应用信息</h2><p>app的基本应用信息一般包括应用名称、包名、文件大小、版本信息、文件的MD5信息、签名信息、加固厂商、第三方 SDK</p></body>]]></content>
+      
+      
+      <categories>
+          
+          <category> 渗透测试 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> app </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Netsh 命令</title>
       <link href="/post/44adbab3.html"/>
       <url>/post/44adbab3.html</url>
