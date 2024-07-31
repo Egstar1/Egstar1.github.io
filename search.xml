@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>重保安全建设方案</title>
+      <link href="/post/412bfe09.html"/>
+      <url>/post/412bfe09.html</url>
+      
+        <content type="html"><![CDATA[<body><blockquote><p>作者声明：本文主要收集于安全架构公众号的文章 <a href=https://mp.weixin.qq.com/s/6qPUzB4O1p8U3ZKQLgyjiw>《重大活动网络安全保障建设》</a></p></blockquote><h2 id="重保安全体系建设"><a href="#重保安全体系建设" class="headerlink" title="重保安全体系建设"></a>重保安全体系建设</h2><p>​        重大活动网络安全保障要规划设计一套可实施性强、覆盖面广的网络安全保障方案，来确保重大活动顺利进行、防范网络安全风险。需要设置保障重大活动网络安全的组织架构，完善重大活动网络安全管理制度，建立重大活动的网络安全技术保障体系，提供全流程的网络安全保障服务，构建事前、事中、事后的多层次、全方位重大活动安全保障体系。</p><p><img src="/../picture/%E9%87%8D%E4%BF%9D%E5%AE%89%E5%85%A8%E5%BB%BA%E8%AE%BE%E6%96%B9%E6%A1%88/image-20240731161538370.png" alt="image-20240731161538370"></p><h2 id="重保人员组织架构建设"><a href="#重保人员组织架构建设" class="headerlink" title="重保人员组织架构建设"></a>重保人员组织架构建设</h2><p>​        网络安全保障是一项庞大且复杂的系统工程，须秉持整体与全局的安全观念来组织管理。统筹组织能力决定了网络安全团队在面对复杂安全威胁时，能否有效地协调各方资源、令各个安全要素形成合力，共同抵御网络攻击。在重大活动网络安全组织保障工作中，需要成立网络安全领导小组、网络安全决策小组以及网络安全工作小组，各小组协同工作，确保重大活动中网络安全保障工作的顺利进行。</p><p><img src="/../picture/%E9%87%8D%E4%BF%9D%E5%AE%89%E5%85%A8%E5%BB%BA%E8%AE%BE%E6%96%B9%E6%A1%88/image-20240731161405159.png" alt="image-20240731161405159"></p><h2 id="重保安全加固清单"><a href="#重保安全加固清单" class="headerlink" title="重保安全加固清单"></a>重保安全加固清单</h2><p><img src="/../picture/%E9%87%8D%E4%BF%9D%E5%AE%89%E5%85%A8%E5%BB%BA%E8%AE%BE%E6%96%B9%E6%A1%88/image-20240731161025652.png" alt="image-20240731161025652"></p></body>]]></content>
+      
+      
+      <categories>
+          
+          <category> 重保 </category>
+          
+          <category> 安全建设 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 安全建设 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>反弹shell</title>
       <link href="/post/2f610211.html"/>
       <url>/post/2f610211.html</url>
@@ -170,9 +197,9 @@
       
         <tags>
             
-            <tag> 蓝队 </tag>
-            
             <tag> 应急响应 </tag>
+            
+            <tag> 蓝队 </tag>
             
         </tags>
       
@@ -274,9 +301,9 @@
       
         <tags>
             
-            <tag> 护网 </tag>
-            
             <tag> 蓝队 </tag>
+            
+            <tag> 护网 </tag>
             
         </tags>
       
