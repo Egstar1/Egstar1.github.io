@@ -4,11 +4,38 @@
   
     
     <entry>
+      <title>项目管理PMP-基于过程的项目管理办法</title>
+      <link href="/post/66875b33.html"/>
+      <url>/post/66875b33.html</url>
+      
+        <content type="html"><![CDATA[<body><h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1></body>]]></content>
+      
+      
+      <categories>
+          
+          <category> 项目管理PMP </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> PMP </tag>
+            
+            <tag> 项目管理 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>项目管理PMP-项目经理的角色</title>
       <link href="/post/53a4d9e.html"/>
       <url>/post/53a4d9e.html</url>
       
-        <content type="html"><![CDATA[<body><h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><h2 id="1、项目干系人"><a href="#1、项目干系人" class="headerlink" title="1、项目干系人"></a>1、项目干系人</h2><p>干系人指的是可能<strong>影响项目</strong>决策、活动或结果的个人、群体、组织，以及回受或自认为会受项目决策、活动或结果影响的个人</p></body>]]></content>
+        <content type="html"><![CDATA[<body><h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><h2 id="1、项目干系人"><a href="#1、项目干系人" class="headerlink" title="1、项目干系人"></a>1、项目干系人</h2><p>干系人指的是所有可能<strong>影响项目</strong>决策、活动或结果的个人、群体、组织，以及回受或自认为会受项目决策、活动或结果影响的个人</p><h2 id="2、项目经理的能力"><a href="#2、项目经理的能力" class="headerlink" title="2、项目经理的能力"></a>2、项目经理的能力</h2><p>人才三角重点关注三个关键技能组合</p><p><strong>工作方式</strong>、<strong>影响力技能</strong>、<strong>商业敏锐度</strong></p><h2 id="3、领导力"><a href="#3、领导力" class="headerlink" title="3、领导力"></a>3、领导力</h2><p>区别管理能力与领导力</p><p>对于管理能力，通常是拥有权力从而对下属发布指令，要求对应人员完成指定的任务。这样一种关系对于执行者来说通常是被动的，会影响执行者的情绪、积极性，从而导致效率降低。</p><p>而领导力技能包括指导、激励和带领团队的能力。包括协商、抗压、沟通、解决问题。</p><h2 id="4、领导力风格"><a href="#4、领导力风格" class="headerlink" title="4、领导力风格"></a>4、领导力风格</h2><p><strong>放任型领导</strong>：允许团队自行设立目标（一般在以团队为成熟型团队时可以采用这种放权的领导模式）</p><p><strong>交易型领导</strong>：关注目标、反馈和成就来确定奖金、例外管理</p><p><strong>服务型领导</strong>：做出服务承诺、处处为他人优先着想，关注他人的成长、学习、发展、自主型，关注人际关系、团队合作。</p><p><strong>变革型领导</strong></p><p><strong>魅力型领导</strong></p><p><strong>交互型领导</strong></p><p>在选题时，道德一定大于实际项目影响</p></body>]]></content>
       
       
       <categories>
@@ -357,9 +384,9 @@
       
         <tags>
             
-            <tag> 应急响应 </tag>
-            
             <tag> 蓝队 </tag>
+            
+            <tag> 应急响应 </tag>
             
         </tags>
       
@@ -461,9 +488,9 @@
       
         <tags>
             
-            <tag> 蓝队 </tag>
-            
             <tag> 护网 </tag>
+            
+            <tag> 蓝队 </tag>
             
         </tags>
       
@@ -551,7 +578,7 @@
       <link href="/post/22e9da5d.html"/>
       <url>/post/22e9da5d.html</url>
       
-        <content type="html"><![CDATA[<body>大家好！我是Egstar</body><p>下面演示的是图库，它使用的html来外挂图片</p><pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>gallery-group-main<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>&#123;% galleryGroup 'ACG' '那些二次元的故事' '/gallery/ACG' https://bu.dusays.com/2022/11/26/638228a86935a.webp %&#125;&#123;% galleryGroup '岳阳' '2017年5月岳阳' '/gallery/YY' https://bu.dusays.com/2022/11/27/63831b681e9f8.jpg %&#125;&#123;% galleryGroup '漫威' '漫威的图片' '/Gallery/marvel' https://i.loli.net/2019/12/25/8t97aVlp4hgyBGu.jpg %&#125;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><div class="gallery-group-main">  <figure class="gallery-group">  <img class="gallery-group-img no-lightbox" src='https://bu.dusays.com/2022/11/26/638228a86935a.webp' alt="Group Image Gallery">  <figcaption>  <div class="gallery-group-name">ACG</div>  <p>那些二次元的故事</p>  <a href='/gallery/ACG'></a>  </figcaption>  </figure>    <figure class="gallery-group">  <img class="gallery-group-img no-lightbox" src='https://bu.dusays.com/2022/11/27/63831b681e9f8.jpg' alt="Group Image Gallery">  <figcaption>  <div class="gallery-group-name">岳阳</div>  <p>2017年5月岳阳</p>  <a href='/gallery/YY'></a>  </figcaption>  </figure>    <figure class="gallery-group">  <img class="gallery-group-img no-lightbox" src='https://i.loli.net/2019/12/25/8t97aVlp4hgyBGu.jpg' alt="Group Image Gallery">  <figcaption>  <div class="gallery-group-name">漫威</div>  <p>漫威的图片</p>  <a href='/Gallery/marvel'></a>  </figcaption>  </figure>  </div><p>这个地方先用来记录一下我安装过的npm依赖吧</p><h1 id="评论系统"><a href="#评论系统" class="headerlink" title="评论系统"></a>评论系统</h1><p>最近在搞评论系统。所以安装了mongodb依赖</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> mongodb<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p><img src="/../picture/%E6%B5%8B%E8%AF%95%E7%AC%AC%E4%B8%80%E7%AF%87hexo%E6%96%87%E7%AB%A0/image-20240530091902348.png" alt="image-20240530091902348"></p><p>评论系统采用了 <a href="https://cloud.mongodb.com/">MongoDB</a>，云函数使用了 <a href="https://vercel.com/signup">Vercel</a></p><p>512M云存储空间，项目可以创建很多个，貌似免费的cluster每个项目都可以创建一个。</p><p><img src="/../picture/%E6%B5%8B%E8%AF%95%E7%AC%AC%E4%B8%80%E7%AF%87hexo%E6%96%87%E7%AB%A0/image-20240530095508637.png" alt="image-20240530095508637"></p><p><img src="/../picture/%E6%B5%8B%E8%AF%95%E7%AC%AC%E4%B8%80%E7%AF%87hexo%E6%96%87%E7%AB%A0/image-20240530093122939.png" alt="image-20240530093122939"></p><p><img src="/../picture/%E6%B5%8B%E8%AF%95%E7%AC%AC%E4%B8%80%E7%AF%87hexo%E6%96%87%E7%AB%A0/image-20240530093255105.png" alt="image-20240530093255105"></p><p>Vercel域名解析到国内，在控制台-Account Setting-Domain-Add中，解析一个CNAME到子域名</p><p><img src="/../picture/%E6%B5%8B%E8%AF%95%E7%AC%AC%E4%B8%80%E7%AF%87hexo%E6%96%87%E7%AB%A0/image-20240530094939131.png" alt="image-20240530094939131"></p><p>这样配置文件的twikoo的eventid就是这个url了，现在可以看到评论系统了</p><p><img src="/../picture/%E6%B5%8B%E8%AF%95%E7%AC%AC%E4%B8%80%E7%AF%87hexo%E6%96%87%E7%AB%A0/image-20240530095145130.png" alt="image-20240530095145130"></p><p>本站采用了 MongoDB + Vercel + Twikoo 方式配置评论系统，具体操作过程可以看 唐志远大佬的博客 <a href="https://fe32.top/articles/hexo1611/">基于 Hexo 键入评论功能</a></p><h1 id="更新发布"><a href="#更新发布" class="headerlink" title="更新发布"></a>更新发布</h1><p>一键三连完成本地静态资源更新并发布到github</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">hexo cl<span class="token operator">&amp;</span>hexo g<span class="token operator">&amp;</span>hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p><img src="/../picture/%E6%B5%8B%E8%AF%95%E7%AC%AC%E4%B8%80%E7%AF%87hexo%E6%96%87%E7%AB%A0/image-20240530100907694.png" alt="image-20240530100907694"></p><p>出现 deploy done: git  则说明更新资源上传成功。</p>]]></content>
+        <content type="html"><![CDATA[<body>大家好！我是Egstar</body><p>下面演示的是图库，它使用的html来外挂图片</p><pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>gallery-group-main<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>&#123;% galleryGroup 'ACG' '那些二次元的故事' '/gallery/ACG' https://bu.dusays.com/2022/11/26/638228a86935a.webp %&#125;&#123;% galleryGroup '岳阳' '2017年5月岳阳' '/gallery/YY' https://bu.dusays.com/2022/11/27/63831b681e9f8.jpg %&#125;&#123;% galleryGroup '漫威' '漫威的图片' '/Gallery/marvel' https://i.loli.net/2019/12/25/8t97aVlp4hgyBGu.jpg %&#125;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><div class="gallery-group-main">  <figure class="gallery-group">  <img class="gallery-group-img no-lightbox" src='https://bu.dusays.com/2022/11/26/638228a86935a.webp' alt="Group Image Gallery">  <figcaption>  <div class="gallery-group-name">ACG</div>  <p>那些二次元的故事</p>  <a href='/gallery/ACG'></a>  </figcaption>  </figure>    <figure class="gallery-group">  <img class="gallery-group-img no-lightbox" src='https://bu.dusays.com/2022/11/27/63831b681e9f8.jpg' alt="Group Image Gallery">  <figcaption>  <div class="gallery-group-name">岳阳</div>  <p>2017年5月岳阳</p>  <a href='/gallery/YY'></a>  </figcaption>  </figure>    <figure class="gallery-group">  <img class="gallery-group-img no-lightbox" src='https://i.loli.net/2019/12/25/8t97aVlp4hgyBGu.jpg' alt="Group Image Gallery">  <figcaption>  <div class="gallery-group-name">漫威</div>  <p>漫威的图片</p>  <a href='/Gallery/marvel'></a>  </figcaption>  </figure>  </div><p>这个地方先用来记录一下我安装过的npm依赖吧</p><h1 id="评论系统"><a href="#评论系统" class="headerlink" title="评论系统"></a>评论系统</h1><p>最近在搞评论系统。所以安装了mongodb依赖</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> mongodb<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p><img src="/../picture/%E6%B5%8B%E8%AF%95%E7%AC%AC%E4%B8%80%E7%AF%87hexo%E6%96%87%E7%AB%A0/image-20240530091902348.png" alt="image-20240530091902348"></p><p>评论系统采用了 <a href="https://cloud.mongodb.com/">MongoDB</a>，云函数使用了 <a href="https://vercel.com/signup">Vercel</a></p><p>512M云存储空间，项目可以创建很多个，貌似免费的cluster每个项目都可以创建一个。</p><p><img src="/../picture/%E6%B5%8B%E8%AF%95%E7%AC%AC%E4%B8%80%E7%AF%87hexo%E6%96%87%E7%AB%A0/image-20240530095508637.png" alt="image-20240530095508637"></p><p><img src="/../picture/%E6%B5%8B%E8%AF%95%E7%AC%AC%E4%B8%80%E7%AF%87hexo%E6%96%87%E7%AB%A0/image-20240530093122939.png" alt="image-20240530093122939"></p><p><img src="/../picture/%E6%B5%8B%E8%AF%95%E7%AC%AC%E4%B8%80%E7%AF%87hexo%E6%96%87%E7%AB%A0/image-20240530093255105.png" alt="image-20240530093255105"></p><p>Vercel域名解析到国内，在控制台-Account Setting-Domain-Add中，解析一个CNAME到子域名</p><p><img src="/../picture/%E6%B5%8B%E8%AF%95%E7%AC%AC%E4%B8%80%E7%AF%87hexo%E6%96%87%E7%AB%A0/image-20240530094939131.png" alt="image-20240530094939131"></p><p>这样配置文件的twikoo的eventid就是这个url了，现在可以看到评论系统了</p><p><img src="/../picture/%E6%B5%8B%E8%AF%95%E7%AC%AC%E4%B8%80%E7%AF%87hexo%E6%96%87%E7%AB%A0/image-20240530095145130.png" alt="image-20240530095145130"></p><p>本站采用了 MongoDB + Vercel + Twikoo 方式配置评论系统，具体操作过程可以看 唐志远大佬的博客 <a href="https://fe32.top/articles/hexo1611/">基于 Hexo 键入评论功能</a></p><h1 id="更新发布"><a href="#更新发布" class="headerlink" title="更新发布"></a>更新发布</h1><p>一键三连完成本地静态资源更新并发布到github</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">hexo cl<span class="token operator">&amp;</span>hexo g<span class="token operator">&amp;</span>hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p><img src="/../picture/%E6%B5%8B%E8%AF%95%E7%AC%AC%E4%B8%80%E7%AF%87hexo%E6%96%87%E7%AB%A0/image-20240530100907694.png" alt="image-20240530100907694"></p><p>出现 deploy done: git  则说明更新资源上传成功。</p><h1 id="留言板"><a href="#留言板" class="headerlink" title="留言板"></a>留言板</h1><p>本站建立了留言板功能，是基于本地 CSS + html 代码实现的信封动画。具体参考了 <a href="https://qianchenggit.github.io/2021/11/08/添加留言板/">博客</a></p><p><img src="/../picture/%E6%B5%8B%E8%AF%95%E7%AC%AC%E4%B8%80%E7%AF%87hexo%E6%96%87%E7%AB%A0/image-20240909170429642.png" alt="image-20240909170429642"></p>]]></content>
       
       
       <categories>
