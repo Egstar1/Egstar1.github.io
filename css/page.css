@@ -1,0 +1,63 @@
+.layout > div:first-child:not(.recent-posts),
+#recent-posts > .recent-post-item,
+#aside-content .card-widget,
+.layout > .recent-posts .pagination > *:not(.space) {
+  /* 第四个参数表示透明度，越小越透明 */
+  background: rgba(239,239,239,0.98);
+}
+
+[data-theme="dark"]
+  #aside-content .card-widget{
+      background: rgba(0, 0, 0, 0.5)!important;
+    }
+[data-theme="dark"]    /*div#post 这是个文章页的区块*/
+  div#post{
+    background: rgba(0, 0, 0, 0.5)!important;
+    border: 1px solid #d62440; /* 设置边框为2像素宽度，实线样式，颜色为紫色 */
+    }
+[data-theme="dark"]      /*这个是侧边栏卡片*/
+  div.card-widget{
+    background: rgba(0, 0, 0, 0.5)!important;
+    border: 1px solid #d62440; /* 设置边框为2像素宽度，实线样式，颜色为紫色 */
+    }
+[data-theme="dark"]        /*这是设置主页文章区块的边框线条*/
+  div.recent-post-item{
+    background: rgba(0, 0, 0, 0.5)!important;
+    border: 1px solid #d62440; /* 设置边框为2像素宽度，实线样式，颜色为紫色 */
+    }
+[data-theme="dark"]        /*这是设置主页文章区块的边框线条*/
+  div#page{
+    background: rgba(0, 0, 0, 0.5)!important;
+    border: 1px solid #d62440; /* 设置边框为2像素宽度，实线样式，颜色为紫色 */
+    }
+[data-theme="dark"]        /*这是设置主页文章区块的边框线条*/
+  div#archive{
+    background: rgba(0, 0, 0, 0.5)!important;
+    border: 1px solid #d62440; /* 设置边框为2像素宽度，实线样式，颜色为薰衣草淡紫色 */
+    }
+
+[data-theme="light"]
+  div#post{
+    border: 2px solid #E6E6FA; /* 设置边框为2像素宽度，实线样式，颜色为紫色 */
+    }
+  div.card-widget{
+    border: 2px solid #E6E6FA; /* 设置边框为2像素宽度，实线样式，颜色为紫色 */
+    }
+  div.recent-post-item{
+    border: 1px solid #E6E6FA; /* 设置边框为2像素宽度，实线样式，颜色为薰衣草淡紫色 */
+    }
+  div#page{
+    border: 1px solid #E6E6FA; /* 设置边框为2像素宽度，实线样式，颜色为薰衣草淡紫色 */
+    }
+  div#archive{
+    border: 1px solid #E6E6FA; /* 设置边框为2像素宽度，实线样式，颜色为薰衣草淡紫色 */
+    }
+  nav#nav.show {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  }
+
+
+/* 头图黑色遮罩层透明 */
+#page-header::before{
+  background: transparent!important;
+}

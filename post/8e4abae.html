@@ -1,0 +1,326 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>应急响应(一)-Linux应急响应手册 | Egstar站长</title><meta name="author" content="Egstar"><meta name="copyright" content="Egstar"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="为了应对不断呈增长趋势的网络安全突发事件，通过本篇将学习如何对linux操作系统进行应急响应">
+<meta property="og:type" content="article">
+<meta property="og:title" content="应急响应(一)-Linux应急响应手册">
+<meta property="og:url" content="http://egstar.top/post/8e4abae.html">
+<meta property="og:site_name" content="Egstar站长">
+<meta property="og:description" content="为了应对不断呈增长趋势的网络安全突发事件，通过本篇将学习如何对linux操作系统进行应急响应">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://egstar.top/images/xiao.jpg">
+<meta property="article:published_time" content="2024-05-28T01:39:38.000Z">
+<meta property="article:modified_time" content="2024-07-02T14:51:01.767Z">
+<meta property="article:author" content="Egstar">
+<meta property="article:tag" content="应急响应">
+<meta property="article:tag" content="蓝队">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://egstar.top/images/xiao.jpg"><link rel="shortcut icon" href="/images/favicon.png"><link rel="canonical" href="http://egstar.top/post/8e4abae.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: Egstar","link":"链接: ","source":"来源: Egstar站长","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '应急响应(一)-Linux应急响应手册',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-07-02 22:51:01'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/modify.css"><link rel="stylesheet" href="/css/page.css"><link rel="stylesheet" href="/css/font.css"><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 7.2.0"></head><body><link rel="stylesheet" href="/css/loading-bar.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/pkds.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">35</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">18</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/catlog/"><i class="fa-fw fa-solid fa-pen-to-square"></i><span> 更新日志</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 文娱</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page child" href="/classics/"><i class="fa-fw fa-solid fa-book-open-reader"></i><span> 古典</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-comments"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></li><li><a class="site-page child" href="/comments/"><i class="fa-fw fa-solid fa-message"></i><span> 留言板</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/images/xiao.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Egstar站长"><span class="site-name">Egstar站长</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/catlog/"><i class="fa-fw fa-solid fa-pen-to-square"></i><span> 更新日志</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 文娱</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page child" href="/classics/"><i class="fa-fw fa-solid fa-book-open-reader"></i><span> 古典</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-comments"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></li><li><a class="site-page child" href="/comments/"><i class="fa-fw fa-solid fa-message"></i><span> 留言板</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">应急响应(一)-Linux应急响应手册</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-05-28T01:39:38.000Z" title="发表于 2024-05-28 09:39:38">2024-05-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-02T14:51:01.767Z" title="更新于 2024-07-02 22:51:01">2024-07-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/">应急响应</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span id="" data-flag-title="应急响应(一)-Linux应急响应手册"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="twikoo_visitors"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><body>
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>通常我们应急时遇到的windows场景较多。对于站长来说目前更是还未遇到Linux的应急情况，所以起这一篇文章记录一下在Linux应急响应时所接触到的相关问题及响应办法。同时思考如何完善应急响应流程，更快更高效的处理突发事件。</p>
+<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><h2 id="对目标进行信息收集和预判"><a href="#对目标进行信息收集和预判" class="headerlink" title="对目标进行信息收集和预判"></a>对目标进行信息收集和预判</h2><p>应急响应开始前夕，一般是由监管单位或网络部门针对服务器或内网终端发现其异常的网络行为下发通报开始的。此时需要由我们应急响应人员组成专项排查小组前往机房现场对事故主机进行响应。来到目标机房现场之后，我们需要先了解事发过程。问清楚通报的情况，事发的主机地址ip或DNS信息，让在场人员保留现场不要自行操作导致证据丢失。同时紧急采取阻断措施断网隔离。对重要文件进行及时备份处理。正式响应开始后，我们需要向系统负责人询问服务器上开放的服务，出网情况，是否开放了敏感高危端口如22，445，3306，3389等。针对web服务需要进一步询问网站的结构，中间件版本信息，框架开源等。</p>
+<p>确认了事发主机ip地址后，我们直接上机进行排查。使用命令查看服务器的开放服务情况</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">netstat</span> <span class="token parameter variable">-antupl</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/../picture/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E4%B8%80-Linux%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%89%8B%E5%86%8C/image-20240529113735679.png" alt="image-20240529113735679"></p>
+<p>获取了服务信息后，可以再次进行判断当前进程情况</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ps</span> <span class="token parameter variable">-aux</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/../picture/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E4%B8%80-Linux%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%89%8B%E5%86%8C/image-20240529114515744.png" alt="image-20240529114515744"></p>
+<p>这个命令可以帮助我们获取当前运行的web服务情况、网站用户、协助判断中间件的log日志位置。如果有部署 apache 则默认日志路径在 <strong>&#x2F;var&#x2F;log&#x2F;httpd</strong> 下或 <strong>&#x2F;etc&#x2F;httpd&#x2F;logs&#x2F;accesslog</strong>，如果有 nginx 则默认的日志路径在 <strong>&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;logs</strong> 也可以通过查看nginx的配置文件 nginx.conf 来获取日志路径，如果有 tomcat 则默认日志路径在 <strong>&#x2F;apache-tomcat-version&#x2F;logs&#x2F;</strong> 下，<strong>conf&#x2F;logging.properties</strong> 中配置了tomcat的日志存储位置。更多的日志路径可以详细查看文章 <a target="_blank" rel="noopener" href="https://www.freebuf.com/column/227843.html">一文了解应急响应中常用的日志收集方法</a> .</p>
+<h2 id="分析系统日志及中间件日志"><a href="#分析系统日志及中间件日志" class="headerlink" title="分析系统日志及中间件日志"></a>分析系统日志及中间件日志</h2><p>了解日志的路径之后，使用命令查看日志路径下的所有文件及更新时间</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ls</span> <span class="token parameter variable">-alt</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/../picture/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E4%B8%80-Linux%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%89%8B%E5%86%8C/image-20240529141040192.png" alt="image-20240529141040192"></p>
+<p>使用命令查看日志的行数也就是日志量</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">cat</span> filename <span class="token operator">|</span><span class="token function">wc</span> <span class="token parameter variable">-l</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/../picture/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E4%B8%80-Linux%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%89%8B%E5%86%8C/image-20240529141333049.png" alt="image-20240529141333049"></p>
+<p>此时针对服务站点的网站语言筛选排查是否有可疑的访问记录，捕捉攻击者的IP</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">cat</span> access.log.1 <span class="token operator">|</span><span class="token function">grep</span> <span class="token string">".php"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>一般可以获取到一个完整的源IP地址、访问时间、请求类型、请求路径、UA头</p>
+<p><img src="/../picture/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E4%B8%80-Linux%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%89%8B%E5%86%8C/image-20240529142621694.png" alt="image-20240529142621694"></p>
+<p>接下来使用命令导出所有的攻击者IP</p>
+<p>可以先将上面筛选的结果归纳到一个txt文件，然后再使用awk命令提取</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">cat</span> access.log.1 <span class="token operator">|</span><span class="token function">grep</span> <span class="token string">".php"</span> <span class="token operator">></span> ip.txt
+
+<span class="token function">awk</span> <span class="token string">'&#123;print $1&#125;'</span> ip.txt <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="/../picture/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E4%B8%80-Linux%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%89%8B%E5%86%8C/image-20240529143114648.png" alt="image-20240529143114648"></p>
+<p>除此之外还可以对ip进行排序和统计行数</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">awk</span> <span class="token string">'&#123;print $1&#125;'</span> access.log.1<span class="token operator">|</span><span class="token function">sort</span><span class="token operator">|</span><span class="token function">uniq</span> <span class="token parameter variable">-c</span>             <span class="token comment">#sort 按ascii排序/uniq 展示行数</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>根据访问量来分辨可疑ip</p>
+<p><img src="/../picture/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E4%B8%80-Linux%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%89%8B%E5%86%8C/image-20240529143615563.png" alt="image-20240529143615563"></p>
+<p>整合命令，提取需要的字段并筛除指定的ip的日志</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">awk</span> <span class="token string">'&#123;print $1  $4  $7&#125;'</span> access.log.1<span class="token operator">|</span><span class="token function">grep</span> <span class="token parameter variable">-v</span> <span class="token number">192.168</span>.1.1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/../picture/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E4%B8%80-Linux%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%89%8B%E5%86%8C/image-20240529144013068.png" alt="image-20240529144013068"></p>
+<h2 id="分析文件的创建时间"><a href="#分析文件的创建时间" class="headerlink" title="分析文件的创建时间"></a>分析文件的创建时间</h2><p>如果是遇到webshell网站木马情况的应急时间，可以通过时间定位文件上传的木马，通过选定特定的语言类型再网站根目录下查找。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">find</span> /var/www/html <span class="token parameter variable">-mtime</span> <span class="token number">0</span> <span class="token parameter variable">-name</span> <span class="token string">"*.php"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/../picture/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E4%B8%80-Linux%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%89%8B%E5%86%8C/image-20240529144705602.png" alt="image-20240529144705602"></p>
+<p>用stat命令查看文件的详细日期信息</p>
+<p><img src="/../picture/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E4%B8%80-Linux%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%89%8B%E5%86%8C/image-20240529145854886.png" alt="image-20240529145854886"></p>
+<p>当我们确认木马文件之后，可以先进行备份</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">cp</span> ma.php ma.php.bak<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>再对木马进行锁死防止文件被修改</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">chattr <span class="token parameter variable">-i</span> ma.php<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="木马分析"><a href="#木马分析" class="headerlink" title="木马分析"></a>木马分析</h2><p>收集到的备份木马文件可以导出到本地主机，然后放到云沙箱观察行为或放到云盾上进行病毒查杀，进一步定性此次应急响应事件为一起webshell后门木马导致服务器失陷的事件。根据木马、攻击者IP信息及时对木马进行清除，并立即封禁攻击者IP。在线云沙箱推荐使用 <a target="_blank" rel="noopener" href="https://s.threatbook.com/">微步云沙箱、</a><a target="_blank" rel="noopener" href="https://ata.360.net/">360云沙箱、</a><a target="_blank" rel="noopener" href="https://sandbox.dbappsecurity.com.cn/">安恒云沙箱、</a><a target="_blank" rel="noopener" href="https://www.virscan.org/">virscan</a> 对木马文件进行分析。</p>
+<p><img src="/../picture/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E4%B8%80-Linux%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%89%8B%E5%86%8C/image-20240529153328835.png" alt="image-20240529153328835"></p>
+<h2 id="攻击路径溯源"><a href="#攻击路径溯源" class="headerlink" title="攻击路径溯源"></a>攻击路径溯源</h2><p>到现在的步骤，我们已经获得了攻击者信息、木马文件信息、日志信息等数据。此时根据木马文件的名称再到安全设备上查看完整的http访问日志，定位到准确的木马文件访问时间和ip，然后根据攻击者ip查询他在一个月时间段内所有的请求行为。这个时候可以梳理出木马文件是通过哪个接口进行上传的。应急小组组织专项测试对该上传接口进行检测，测试是否存在未授权、文件上传等漏洞。确认攻击路径。</p>
+<p>可以通过以下命令检索文件内容来排查攻击ip的请求流量</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">find</span> / <span class="token parameter variable">-type</span> f <span class="token operator">|</span> <span class="token function">xargs</span> <span class="token function">grep</span> <span class="token string">'/include/makecvs.php?Event=http|echo'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这一段通过匹配攻击者请求的恶意地址或 payload 来筛选出指定攻击者的流量包，并且是全盘扫描匹配！因此可能需要报备，注意服务器的内存使用情况。</p>
+<h2 id="服务器全盘查杀"><a href="#服务器全盘查杀" class="headerlink" title="服务器全盘查杀"></a>服务器全盘查杀</h2><p>完成上述步骤之后，我们需要对服务器整盘路径进行病毒查杀，扫描是否存在可疑后门病毒程序。对所有遗漏的木马病毒进行清理删除。可疑使用D盾、河马等病毒查杀工具扫描linux服务器。不过再对服务器上传程序时需要和现场同事或客户沟通好，确认上传程序进行授权，避免引起后续的麻烦和误会。</p>
+<h2 id="隐藏项排查"><a href="#隐藏项排查" class="headerlink" title="隐藏项排查"></a>隐藏项排查</h2><p>最后我们需要对服务器进行一轮加固。这一点是针对未能自动化查杀的隐藏项进行手动排查的。</p>
+<h3 id="检查定时任务"><a href="#检查定时任务" class="headerlink" title="检查定时任务"></a>检查定时任务</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">crontab</span> <span class="token parameter variable">-l</span>       <span class="token comment">#查看计划定时任务</span>
+
+<span class="token function">crontab</span> <span class="token parameter variable">-e</span>       <span class="token comment">#查看定时任务文件，被隐藏的定时任务可以用此命令查看</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="/../picture/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E4%B8%80-Linux%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%89%8B%E5%86%8C/image-20240529155152937.png" alt="image-20240529155152937"></p>
+<h3 id="检查可疑进程"><a href="#检查可疑进程" class="headerlink" title="检查可疑进程"></a>检查可疑进程</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ps</span> <span class="token parameter variable">-aux</span> <span class="token operator">|</span><span class="token function">grep</span> <span class="token string">"\./"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>检查.&#x2F;是因为通常正常执行程序不会用.&#x2F;去运行，一般是被上传的二进制可执行文件攻击者会以.&#x2F;去执行</p>
+<p><img src="/../picture/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E4%B8%80-Linux%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%89%8B%E5%86%8C/image-20240529162818607.png" alt="image-20240529162818607"></p>
+<h3 id="文件hash校验"><a href="#文件hash校验" class="headerlink" title="文件hash校验"></a>文件hash校验</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">sha256sum filename<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/../picture/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E4%B8%80-Linux%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%89%8B%E5%86%8C/image-20240529163107940.png" alt="image-20240529163107940"></p>
+<h3 id="检查可登录系统账户"><a href="#检查可登录系统账户" class="headerlink" title="检查可登录系统账户"></a>检查可登录系统账户</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">cat</span> /etc/passwd <span class="token operator">|</span> <span class="token function">grep</span> <span class="token parameter variable">-v</span> /sbin/nologin <span class="token operator">|</span> <span class="token function">cut</span> <span class="token parameter variable">-d</span> <span class="token builtin class-name">:</span> <span class="token parameter variable">-f</span> <span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/../picture/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E4%B8%80-Linux%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%89%8B%E5%86%8C/image-20240529163816160.png" alt="image-20240529163816160"></p>
+<p>发现非正常创建的用户时进行删除或禁用</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">usermod</span> <span class="token parameter variable">-L</span> username
+
+<span class="token function">userdel</span> <span class="token parameter variable">-r</span> username<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="检查用户情况"><a href="#检查用户情况" class="headerlink" title="检查用户情况"></a>检查用户情况</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">lastlog<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/../picture/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E4%B8%80-Linux%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%89%8B%E5%86%8C/image-20240529164209211.png" alt="image-20240529164209211"></p>
+<p>当前在线用户</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">w<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/../picture/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E4%B8%80-Linux%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%89%8B%E5%86%8C/image-20240529165631932.png" alt="image-20240529165631932"></p>
+<p>检查空口账户</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">awk</span> -F: <span class="token string">'length($2) ==0 &#123;print$1&#125;'</span> /etc/shadow<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>检查哪些ip对服务器有登录失败爆破行为</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">lastb<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/../picture/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E4%B8%80-Linux%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%89%8B%E5%86%8C/image-20240529165324701.png" alt="image-20240529165324701"></p>
+<p>检查超级用户</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">awk</span> -F: <span class="token string">'&#123;if ($3==0) print $1&#125;'</span> /etc/passwd<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/../picture/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E4%B8%80-Linux%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%89%8B%E5%86%8C/image-20240529165611432.png" alt="image-20240529165611432"></p>
+<h2 id="挖矿木马排查"><a href="#挖矿木马排查" class="headerlink" title="挖矿木马排查"></a>挖矿木马排查</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">top</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>检查cpu使用率及进程PID</p>
+<p><img src="/../picture/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E4%B8%80-Linux%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%89%8B%E5%86%8C/image-20240529170000165.png" alt="image-20240529170000165"></p>
+<h1 id="最后的话"><a href="#最后的话" class="headerlink" title="最后的话"></a>最后的话</h1><p>在应急响应时除了技术处置，还要记得多拍照存底。记录应急组员动员响应的过程，研判分析过程也要多拍照多截图。出具应急响应报告时都用的上。前面让大家的先期处置一定要拍照截图留证明，做为前期加固处置的证据。这些都是非常有必要并且重要的。最后总结加固建议可以根据突发事件的情况进行提出针对性意见，也可以大致概括为以下几点：</p>
+<ol>
+<li>定期开展渗透测试和漏扫，及时排查安全风险</li>
+<li>加强员工安全意识，开展安全意识培训</li>
+<li>收敛互联网暴露面</li>
+<li>构建完善的waf、态感防御处置机制</li>
+</ol>
+</body>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://egstar.top">Egstar</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://egstar.top/post/8e4abae.html">http://egstar.top/post/8e4abae.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://egstar.top" target="_blank">Egstar站长</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/">应急响应</a><a class="post-meta__tags" href="/tags/%E8%93%9D%E9%98%9F/">蓝队</a></div><div class="post_share"><div class="social-share" data-image="/images/xiao.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/5f6fb293.html" title="面试沟通的艺术(二)-简历优化"><img class="cover" src="/images/xg.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">面试沟通的艺术(二)-简历优化</div></div></a></div><div class="next-post pull-right"><a href="/post/2c457582.html" title="XSS POC"><img class="cover" src="/images/ganyu.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">XSS POC</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/post/97765e90.html" title="护网行动(一)-护网前准备"><img class="cover" src="/images/beidou.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-05-14</div><div class="title">护网行动(一)-护网前准备</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/images/pkds.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Egstar</div><div class="author-info__description">安全秘辛，古文经典</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">35</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">18</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Egstar1"><i class="fab fa-github"></i><span>我的Github</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Egstar1" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:1337995241@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B"><span class="toc-number">2.</span> <span class="toc-text">开始</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E7%9B%AE%E6%A0%87%E8%BF%9B%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E5%92%8C%E9%A2%84%E5%88%A4"><span class="toc-number">2.1.</span> <span class="toc-text">对目标进行信息收集和预判</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%9E%90%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%BF%97%E5%8F%8A%E4%B8%AD%E9%97%B4%E4%BB%B6%E6%97%A5%E5%BF%97"><span class="toc-number">2.2.</span> <span class="toc-text">分析系统日志及中间件日志</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%9E%90%E6%96%87%E4%BB%B6%E7%9A%84%E5%88%9B%E5%BB%BA%E6%97%B6%E9%97%B4"><span class="toc-number">2.3.</span> <span class="toc-text">分析文件的创建时间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%A8%E9%A9%AC%E5%88%86%E6%9E%90"><span class="toc-number">2.4.</span> <span class="toc-text">木马分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E8%B7%AF%E5%BE%84%E6%BA%AF%E6%BA%90"><span class="toc-number">2.5.</span> <span class="toc-text">攻击路径溯源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%85%A8%E7%9B%98%E6%9F%A5%E6%9D%80"><span class="toc-number">2.6.</span> <span class="toc-text">服务器全盘查杀</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9A%90%E8%97%8F%E9%A1%B9%E6%8E%92%E6%9F%A5"><span class="toc-number">2.7.</span> <span class="toc-text">隐藏项排查</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A3%80%E6%9F%A5%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1"><span class="toc-number">2.7.1.</span> <span class="toc-text">检查定时任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A3%80%E6%9F%A5%E5%8F%AF%E7%96%91%E8%BF%9B%E7%A8%8B"><span class="toc-number">2.7.2.</span> <span class="toc-text">检查可疑进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6hash%E6%A0%A1%E9%AA%8C"><span class="toc-number">2.7.3.</span> <span class="toc-text">文件hash校验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A3%80%E6%9F%A5%E5%8F%AF%E7%99%BB%E5%BD%95%E7%B3%BB%E7%BB%9F%E8%B4%A6%E6%88%B7"><span class="toc-number">2.7.4.</span> <span class="toc-text">检查可登录系统账户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A3%80%E6%9F%A5%E7%94%A8%E6%88%B7%E6%83%85%E5%86%B5"><span class="toc-number">2.7.5.</span> <span class="toc-text">检查用户情况</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%96%E7%9F%BF%E6%9C%A8%E9%A9%AC%E6%8E%92%E6%9F%A5"><span class="toc-number">2.8.</span> <span class="toc-text">挖矿木马排查</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%80%E5%90%8E%E7%9A%84%E8%AF%9D"><span class="toc-number">3.</span> <span class="toc-text">最后的话</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/3f9d8036.html" title="ShellCode免杀平台-EasyTools">ShellCode免杀平台-EasyTools</a><time datetime="2025-05-28T09:20:43.000Z" title="发表于 2025-05-28 17:20:43">2025-05-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/cec152a6.html" title="等保2.0"><img src="/images/250306.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="等保2.0"/></a><div class="content"><a class="title" href="/post/cec152a6.html" title="等保2.0">等保2.0</a><time datetime="2025-03-06T02:09:42.000Z" title="发表于 2025-03-06 10:09:42">2025-03-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/56f57219.html" title="WAF防护绕过"><img src="/images/250225_1.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="WAF防护绕过"/></a><div class="content"><a class="title" href="/post/56f57219.html" title="WAF防护绕过">WAF防护绕过</a><time datetime="2025-02-25T01:28:55.000Z" title="发表于 2025-02-25 09:28:55">2025-02-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/da6acaa9.html" title="《增广贤文》原文赏析"><img src="/images/250220.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="《增广贤文》原文赏析"/></a><div class="content"><a class="title" href="/post/da6acaa9.html" title="《增广贤文》原文赏析">《增广贤文》原文赏析</a><time datetime="2025-02-20T08:48:22.000Z" title="发表于 2025-02-20 16:48:22">2025-02-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/d9476fae.html" title="网络安全岗位面试"><img src="/images/250124.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="网络安全岗位面试"/></a><div class="content"><a class="title" href="/post/d9476fae.html" title="网络安全岗位面试">网络安全岗位面试</a><time datetime="2025-01-24T03:54:22.000Z" title="发表于 2025-01-24 11:54:22">2025-01-24</time></div></div></div></div></div></div></main><footer id="footer" style="background: transparent"><div id="footer-wrap"><div class="copyright">&copy;2025 By Egstar</div><div class="footer_custom_text">I wish you to become your own sun, no need to rely on who's light.<p><a target="_blank" href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a>&nbsp;<a target="_blank" href="https://butterfly.js.org/"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a>&nbsp;<a target="_blank" href="https://www.jsdelivr.com/"><img src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a> &nbsp;<a target="_blank" href="https://vercel.com/ "><img src="https://img.shields.io/badge/Hosted-Vervel-brightgreen?style=flat&logo=Vercel" title="本站采用双线部署，默认线路托管于Vercel"></a>&nbsp;<a target="_blank" href="https://vercel.com/ "><img src="https://img.shields.io/badge/Hosted-Coding-0cedbe?style=flat&logo=Codio" title="本站采用双线部署，联通线路托管于Coding"></a>&nbsp;<a target="_blank" href="https://github.com/"><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Gtihub托管"></a>&nbsp;<a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo.egstar.top/',
+      region: 'ap-shanghai',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo.egstar.top/',
+      region: 'ap-shanghai',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script src="/statics/mouse_hover.js"></script><script src="/statics/chocolate.js"></script><script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script><script data-pjax defer src="https://npm.elemecdn.com/tzy-blog/lib/js/theme/chocolate.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></body></html>

