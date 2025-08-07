@@ -1,0 +1,585 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>洞态IAST部署 | Egstar站长</title><meta name="author" content="Egstar"><meta name="copyright" content="Egstar"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="解决洞态IAST在部署时遇到的一些问题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="洞态IAST部署">
+<meta property="og:url" content="http://egstar.top/post/144a22d3.html">
+<meta property="og:site_name" content="Egstar站长">
+<meta property="og:description" content="解决洞态IAST在部署时遇到的一些问题">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://egstar.top/images/250807.jpg">
+<meta property="article:published_time" content="2025-08-07T06:39:27.000Z">
+<meta property="article:modified_time" content="2025-08-07T06:49:54.338Z">
+<meta property="article:author" content="Egstar">
+<meta property="article:tag" content="SDL建设">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://egstar.top/images/250807.jpg"><link rel="shortcut icon" href="/images/favicon.png"><link rel="canonical" href="http://egstar.top/post/144a22d3.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: Egstar","link":"链接: ","source":"来源: Egstar站长","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '洞态IAST部署',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-08-07 14:49:54'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/modify.css"><link rel="stylesheet" href="/css/page.css"><link rel="stylesheet" href="/css/font.css"><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 7.2.0"></head><body><link rel="stylesheet" href="/css/loading-bar.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/pkds.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">36</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">26</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/catlog/"><i class="fa-fw fa-solid fa-pen-to-square"></i><span> 更新日志</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 文娱</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page child" href="/classics/"><i class="fa-fw fa-solid fa-book-open-reader"></i><span> 古典</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-comments"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></li><li><a class="site-page child" href="/comments/"><i class="fa-fw fa-solid fa-message"></i><span> 留言板</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/images/250807.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Egstar站长"><span class="site-name">Egstar站长</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/catlog/"><i class="fa-fw fa-solid fa-pen-to-square"></i><span> 更新日志</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 文娱</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page child" href="/classics/"><i class="fa-fw fa-solid fa-book-open-reader"></i><span> 古典</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-comments"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></li><li><a class="site-page child" href="/comments/"><i class="fa-fw fa-solid fa-message"></i><span> 留言板</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">洞态IAST部署</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-08-07T06:39:27.000Z" title="发表于 2025-08-07 14:39:27">2025-08-07</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-08-07T06:49:54.338Z" title="更新于 2025-08-07 14:49:54">2025-08-07</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/SDL%E5%BB%BA%E8%AE%BE/">SDL建设</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>12分钟</span></span><span class="post-meta-separator">|</span><span id="" data-flag-title="洞态IAST部署"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="twikoo_visitors"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><body>
+
+<blockquote>
+<p>在本地部署洞态IAST时，dtctl脚本自动从docker hub官方仓库拉取镜像，由于国内访问限制导致总是拉取失败的解决办法。</p>
+</blockquote>
+<h1 id="先修改docker的镜像源"><a href="#先修改docker的镜像源" class="headerlink" title="先修改docker的镜像源"></a>先修改docker的镜像源</h1><p>cat &#x2F;etc&#x2F;docker&#x2F;daemon.json</p>
+<pre class="line-numbers language-none"><code class="language-none">&#123;
+  &quot;registry-mirrors&quot; : [&quot;https:&#x2F;&#x2F;docker.registry.cyou&quot;,
+&quot;https:&#x2F;&#x2F;docker-cf.registry.cyou&quot;,
+&quot;https:&#x2F;&#x2F;dockercf.jsdelivr.fyi&quot;,
+&quot;https:&#x2F;&#x2F;docker.jsdelivr.fyi&quot;,
+&quot;https:&#x2F;&#x2F;dockertest.jsdelivr.fyi&quot;,
+&quot;https:&#x2F;&#x2F;mirror.aliyuncs.com&quot;,
+&quot;https:&#x2F;&#x2F;dockerproxy.com&quot;,
+&quot;https:&#x2F;&#x2F;mirror.baidubce.com&quot;,
+&quot;https:&#x2F;&#x2F;docker.m.daocloud.io&quot;,
+&quot;https:&#x2F;&#x2F;docker.nju.edu.cn&quot;,
+&quot;https:&#x2F;&#x2F;docker.mirrors.sjtug.sjtu.edu.cn&quot;,
+&quot;https:&#x2F;&#x2F;docker.mirrors.ustc.edu.cn&quot;,
+&quot;https:&#x2F;&#x2F;mirror.iscas.ac.cn&quot;,
+&quot;https:&#x2F;&#x2F;docker.rainbond.cc&quot;,
+&quot;https:&#x2F;&#x2F;do.nark.eu.org&quot;,
+&quot;https:&#x2F;&#x2F;dc.j8.work&quot;,
+&quot;https:&#x2F;&#x2F;dockerproxy.com&quot;,
+&quot;https:&#x2F;&#x2F;gst6rzl9.mirror.aliyuncs.com&quot;,
+&quot;https:&#x2F;&#x2F;registry.docker-cn.com&quot;,
+&quot;http:&#x2F;&#x2F;hub-mirror.c.163.com&quot;,
+&quot;http:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;&quot;,
+&quot;https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;&quot;,
+&quot;http:&#x2F;&#x2F;mirrors.sohu.com&#x2F;&quot; 
+],
+ &quot;insecure-registries&quot; : [
+    &quot;registry.docker-cn.com&quot;,
+    &quot;docker.mirrors.ustc.edu.cn&quot;
+    ],
+&quot;debug&quot;: true,
+&quot;experimental&quot;: false
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h1><p>拉取以下镜像 docker pull dongtai&#x2F;dongtai-web:latest</p>
+<pre class="line-numbers language-none"><code class="language-none">dongtai&#x2F;dongtai-web:latest
+dongtai&#x2F;dongtai-server:latest
+dongtai&#x2F;dongtai-mysql:latest
+dongtai&#x2F;dongtai-redis:latest
+dongtai&#x2F;dongtai-openapi:latest
+dongtai&#x2F;dongtai-logrotate:latest
+dongtai&#x2F;dongtai-logstash:latest
+dongtai&#x2F;dongtai-engine:latest
+dongtai&#x2F;dongtai-engine-task:latest
+dongtai-engine-task:latest<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>如果你选择自己的mysql、redis可以忽略拉取dongtai的镜像。</p>
+<p><img src="http://www.kdocs.cn/api/v3/office/copy/YlB0U0d6UUdLNnhJVFlQNzdtRWFUU2loaDVtQmlBL1IvSHpPa0NPemZncjh6dlE5aWttbnNWVmdLY3RXNitvZXh5UExXL2tncE5WTjg3bDRxZXY2U0J0dUxYWWZKVHZDNk1QcE93OEdvcksyREZ0bm1WQjduL3NuTy9FRXhYWXhTL2V5VVVBUFpxTGdVU0xIcXVPcGpJaEdla0dZQUN0YjRENG5VRSs2QnhqNW5ZVTlyYTdzZ3NvSjFjRGVHMlhwNTM3bTN6c2NVK1J1ZDZJWWxGZE5kUEZvV3RCWmFQaG44dS81dzRPR2hKQUxiNVhGb1pDSi9BUGhzeDF4UTBnMzVCK3lkWFl1QmxFPQ==/attach/object/WHN4TQJBADQDU" alt="img"></p>
+<h1 id="修改-dtctl安装脚本的验证函数"><a href="#修改-dtctl安装脚本的验证函数" class="headerlink" title="修改 dtctl安装脚本的验证函数"></a>修改 dtctl安装脚本的验证函数</h1><p><img src="http://www.kdocs.cn/api/v3/office/copy/YlB0U0d6UUdLNnhJVFlQNzdtRWFUU2loaDVtQmlBL1IvSHpPa0NPemZncjh6dlE5aWttbnNWVmdLY3RXNitvZXh5UExXL2tncE5WTjg3bDRxZXY2U0J0dUxYWWZKVHZDNk1QcE93OEdvcksyREZ0bm1WQjduL3NuTy9FRXhYWXhTL2V5VVVBUFpxTGdVU0xIcXVPcGpJaEdla0dZQUN0YjRENG5VRSs2QnhqNW5ZVTlyYTdzZ3NvSjFjRGVHMlhwNTM3bTN6c2NVK1J1ZDZJWWxGZE5kUEZvV3RCWmFQaG44dS81dzRPR2hKQUxiNVhGb1pDSi9BUGhzeDF4UTBnMzVCK3lkWFl1QmxFPQ==/attach/object/IBRCTQRBACQE4" alt="img"></p>
+<p>把 get_latest_image_tag_from_dockerhub 函数直接改成</p>
+<pre class="line-numbers language-none"><code class="language-none">get_latest_image_tag_from_dockerhub() &#123;
+   echo &quot;latest&quot;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="注意-docker-compose-的版本要求version-2-1-0及以上"><a href="#注意-docker-compose-的版本要求version-2-1-0及以上" class="headerlink" title="注意 docker compose 的版本要求version 2.1.0及以上"></a>注意 docker compose 的版本要求version 2.1.0及以上</h1><p><img src="http://www.kdocs.cn/api/v3/office/copy/YlB0U0d6UUdLNnhJVFlQNzdtRWFUU2loaDVtQmlBL1IvSHpPa0NPemZncjh6dlE5aWttbnNWVmdLY3RXNitvZXh5UExXL2tncE5WTjg3bDRxZXY2U0J0dUxYWWZKVHZDNk1QcE93OEdvcksyREZ0bm1WQjduL3NuTy9FRXhYWXhTL2V5VVVBUFpxTGdVU0xIcXVPcGpJaEdla0dZQUN0YjRENG5VRSs2QnhqNW5ZVTlyYTdzZ3NvSjFjRGVHMlhwNTM3bTN6c2NVK1J1ZDZJWWxGZE5kUEZvV3RCWmFQaG44dS81dzRPR2hKQUxiNVhGb1pDSi9BUGhzeDF4UTBnMzVCK3lkWFl1QmxFPQ==/attach/object/2TXNBQJBABAHG" alt="img"></p>
+<pre class="line-numbers language-none"><code class="language-none">#先删除旧版
+sudo apt remove docker-compose -y
+
+# 创建插件目录
+sudo mkdir -p &#x2F;usr&#x2F;local&#x2F;lib&#x2F;docker&#x2F;cli-plugins
+
+# 下载最新版本
+sudo curl -SL https:&#x2F;&#x2F;github.com&#x2F;docker&#x2F;compose&#x2F;releases&#x2F;latest&#x2F;download&#x2F;docker-compose-linux-x86_64 \
+  -o &#x2F;usr&#x2F;local&#x2F;lib&#x2F;docker&#x2F;cli-plugins&#x2F;docker-compose
+
+# 赋予执行权限
+sudo chmod +x &#x2F;usr&#x2F;local&#x2F;lib&#x2F;docker&#x2F;cli-plugins&#x2F;docker-compose
+
+#验证版本
+docker compose version<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="Docker-compose-v2检测问题"><a href="#Docker-compose-v2检测问题" class="headerlink" title="Docker-compose v2检测问题"></a>Docker-compose v2检测问题</h1><p>新版本的docker compose没有连接符-</p>
+<p><img src="http://www.kdocs.cn/api/v3/office/copy/YlB0U0d6UUdLNnhJVFlQNzdtRWFUU2loaDVtQmlBL1IvSHpPa0NPemZncjh6dlE5aWttbnNWVmdLY3RXNitvZXh5UExXL2tncE5WTjg3bDRxZXY2U0J0dUxYWWZKVHZDNk1QcE93OEdvcksyREZ0bm1WQjduL3NuTy9FRXhYWXhTL2V5VVVBUFpxTGdVU0xIcXVPcGpJaEdla0dZQUN0YjRENG5VRSs2QnhqNW5ZVTlyYTdzZ3NvSjFjRGVHMlhwNTM3bTN6c2NVK1J1ZDZJWWxGZE5kUEZvV3RCWmFQaG44dS81dzRPR2hKQUxiNVhGb1pDSi9BUGhzeDF4UTBnMzVCK3lkWFl1QmxFPQ==/attach/object/VDT5NQJBACAA6" alt="img"></p>
+<p>但是dtctl安装脚本调用的全是 docker-compose 命令</p>
+<p><img src="http://www.kdocs.cn/api/v3/office/copy/YlB0U0d6UUdLNnhJVFlQNzdtRWFUU2loaDVtQmlBL1IvSHpPa0NPemZncjh6dlE5aWttbnNWVmdLY3RXNitvZXh5UExXL2tncE5WTjg3bDRxZXY2U0J0dUxYWWZKVHZDNk1QcE93OEdvcksyREZ0bm1WQjduL3NuTy9FRXhYWXhTL2V5VVVBUFpxTGdVU0xIcXVPcGpJaEdla0dZQUN0YjRENG5VRSs2QnhqNW5ZVTlyYTdzZ3NvSjFjRGVHMlhwNTM3bTN6c2NVK1J1ZDZJWWxGZE5kUEZvV3RCWmFQaG44dS81dzRPR2hKQUxiNVhGb1pDSi9BUGhzeDF4UTBnMzVCK3lkWFl1QmxFPQ==/attach/object/KVS5PQJBAAAHG" alt="img"></p>
+<p>通过创建软连接的方式一次性解决问题</p>
+<pre class="line-numbers language-none"><code class="language-none">ln -sf &#x2F;usr&#x2F;local&#x2F;lib&#x2F;docker&#x2F;cli-plugins&#x2F;docker-compose &#x2F;usr&#x2F;bin&#x2F;docker-compose<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="http://www.kdocs.cn/api/v3/office/copy/YlB0U0d6UUdLNnhJVFlQNzdtRWFUU2loaDVtQmlBL1IvSHpPa0NPemZncjh6dlE5aWttbnNWVmdLY3RXNitvZXh5UExXL2tncE5WTjg3bDRxZXY2U0J0dUxYWWZKVHZDNk1QcE93OEdvcksyREZ0bm1WQjduL3NuTy9FRXhYWXhTL2V5VVVBUFpxTGdVU0xIcXVPcGpJaEdla0dZQUN0YjRENG5VRSs2QnhqNW5ZVTlyYTdzZ3NvSjFjRGVHMlhwNTM3bTN6c2NVK1J1ZDZJWWxGZE5kUEZvV3RCWmFQaG44dS81dzRPR2hKQUxiNVhGb1pDSi9BUGhzeDF4UTBnMzVCK3lkWFl1QmxFPQ==/attach/object/NUZ5RQJBADQHC" alt="img"></p>
+<h1 id="使用国内过期的阿里云镜像仓库导致访问失败问题"><a href="#使用国内过期的阿里云镜像仓库导致访问失败问题" class="headerlink" title="使用国内过期的阿里云镜像仓库导致访问失败问题"></a>使用国内过期的阿里云镜像仓库导致访问失败问题</h1><p><img src="http://www.kdocs.cn/api/v3/office/copy/YlB0U0d6UUdLNnhJVFlQNzdtRWFUU2loaDVtQmlBL1IvSHpPa0NPemZncjh6dlE5aWttbnNWVmdLY3RXNitvZXh5UExXL2tncE5WTjg3bDRxZXY2U0J0dUxYWWZKVHZDNk1QcE93OEdvcksyREZ0bm1WQjduL3NuTy9FRXhYWXhTL2V5VVVBUFpxTGdVU0xIcXVPcGpJaEdla0dZQUN0YjRENG5VRSs2QnhqNW5ZVTlyYTdzZ3NvSjFjRGVHMlhwNTM3bTN6c2NVK1J1ZDZJWWxGZE5kUEZvV3RCWmFQaG44dS81dzRPR2hKQUxiNVhGb1pDSi9BUGhzeDF4UTBnMzVCK3lkWFl1QmxFPQ==/attach/object/EA5PBQJBACAFI" alt="img"></p>
+<p>在 dtctl 脚本中找到 <a target="_blank" rel="noopener" href="https://aliyuncs.com/huoxian_pub">aliyuncs.com&#x2F;huoxian_pub</a></p>
+<p><img src="http://www.kdocs.cn/api/v3/office/copy/YlB0U0d6UUdLNnhJVFlQNzdtRWFUU2loaDVtQmlBL1IvSHpPa0NPemZncjh6dlE5aWttbnNWVmdLY3RXNitvZXh5UExXL2tncE5WTjg3bDRxZXY2U0J0dUxYWWZKVHZDNk1QcE93OEdvcksyREZ0bm1WQjduL3NuTy9FRXhYWXhTL2V5VVVBUFpxTGdVU0xIcXVPcGpJaEdla0dZQUN0YjRENG5VRSs2QnhqNW5ZVTlyYTdzZ3NvSjFjRGVHMlhwNTM3bTN6c2NVK1J1ZDZJWWxGZE5kUEZvV3RCWmFQaG44dS81dzRPR2hKQUxiNVhGb1pDSi9BUGhzeDF4UTBnMzVCK3lkWFl1QmxFPQ==/attach/object/PP6PBQJBABACU" alt="img"></p>
+<p>改成 dongtai，另外可以直接自己使用 docker pull 拉取镜像，不要用脚本去调用，直接删除pull操作</p>
+<p><img src="http://www.kdocs.cn/api/v3/office/copy/YlB0U0d6UUdLNnhJVFlQNzdtRWFUU2loaDVtQmlBL1IvSHpPa0NPemZncjh6dlE5aWttbnNWVmdLY3RXNitvZXh5UExXL2tncE5WTjg3bDRxZXY2U0J0dUxYWWZKVHZDNk1QcE93OEdvcksyREZ0bm1WQjduL3NuTy9FRXhYWXhTL2V5VVVBUFpxTGdVU0xIcXVPcGpJaEdla0dZQUN0YjRENG5VRSs2QnhqNW5ZVTlyYTdzZ3NvSjFjRGVHMlhwNTM3bTN6c2NVK1J1ZDZJWWxGZE5kUEZvV3RCWmFQaG44dS81dzRPR2hKQUxiNVhGb1pDSi9BUGhzeDF4UTBnMzVCK3lkWFl1QmxFPQ==/attach/object/G3G7FQJBAAQFE" alt="img"></p>
+<pre class="line-numbers language-none"><code class="language-none">#docker-compose -p $PROJECT_NAME -f &lt;(echo &quot;$docker_compose_file&quot;) pull<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>不过由于我们已经本地下载了latest tag的镜像，所以可以在安装时进行指定即可，这样也能直接跳过docker的pull操作，避免产生网络访问问题。</p>
+<pre class="line-numbers language-none"><code class="language-none">.&#x2F;dtctl install -v latest<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>本地自己要pull的镜像如下</p>
+<pre class="line-numbers language-none"><code class="language-none"># 拉取洞态所需全部镜像（对应最新版，如需指定版本把 :latest 换掉）
+images&#x3D;(
+  dongtai&#x2F;dongtai-web:latest
+  dongtai&#x2F;dongtai-server:latest
+  dongtai&#x2F;dongtai-mysql:latest
+  dongtai&#x2F;dongtai-redis:latest
+  dongtai&#x2F;dongtai-openapi:latest
+  dongtai&#x2F;dongtai-logrotate:latest
+  dongtai&#x2F;dongtai-logstash:latest
+  dongtai&#x2F;dongtai-engine:latest
+  dongtai&#x2F;dongtai-engine-task:latest
+  dongtai-engine-task:latest
+)
+
+for img in &quot;$&#123;images[@]&#125;&quot;; do
+  docker pull &quot;$img&quot;
+done<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="后台接口报错404问题"><a href="#后台接口报错404问题" class="headerlink" title="后台接口报错404问题"></a>后台接口报错404问题</h1><p>按照上述步骤操作完成后，发现后台的一些接口报错404，通过看日志发现是dongtai-server没有启动。继续回去查看安装脚本 dtctl，当我们使用latest，没有指定具体的tag时，脚本会默认生成下面这个docker-compose.yaml，而这个配置文件只启动了web、web-api、mysql、redis、openapi、engine</p>
+<p>没有启动server、logstash、logrotate、以及依赖server分角色启动的一些worker服务，导致后台接口产生问题。</p>
+<p><img src="http://www.kdocs.cn/api/v3/office/copy/YlB0U0d6UUdLNnhJVFlQNzdtRWFUU2loaDVtQmlBL1IvSHpPa0NPemZncjh6dlE5aWttbnNWVmdLY3RXNitvZXh5UExXL2tncE5WTjg3bDRxZXY2U0J0dUxYWWZKVHZDNk1QcE93OEdvcksyREZ0bm1WQjduL3NuTy9FRXhYWXhTL2V5VVVBUFpxTGdVU0xIcXVPcGpJaEdla0dZQUN0YjRENG5VRSs2QnhqNW5ZVTlyYTdzZ3NvSjFjRGVHMlhwNTM3bTN6c2NVK1J1ZDZJWWxGZE5kUEZvV3RCWmFQaG44dS81dzRPR2hKQUxiNVhGb1pDSi9BUGhzeDF4UTBnMzVCK3lkWFl1QmxFPQ==/attach/object/KSNC3RZBAAQHI" alt="img"></p>
+<p>查看上面其他tag版本的docker-compose.yaml，将缺失的配置复制过来，<em><strong>*注意（挂载使用了iast-vol的因为在生成配置时，脚本会自动拼接&#x2F;dev&#x2F;fd&#x2F;log，导致服务启动报错，所以需要把iast-vol改成 $PWD&#x2F;log&#x2F;）*</strong></em></p>
+<p><img src="http://www.kdocs.cn/api/v3/office/copy/YlB0U0d6UUdLNnhJVFlQNzdtRWFUU2loaDVtQmlBL1IvSHpPa0NPemZncjh6dlE5aWttbnNWVmdLY3RXNitvZXh5UExXL2tncE5WTjg3bDRxZXY2U0J0dUxYWWZKVHZDNk1QcE93OEdvcksyREZ0bm1WQjduL3NuTy9FRXhYWXhTL2V5VVVBUFpxTGdVU0xIcXVPcGpJaEdla0dZQUN0YjRENG5VRSs2QnhqNW5ZVTlyYTdzZ3NvSjFjRGVHMlhwNTM3bTN6c2NVK1J1ZDZJWWxGZE5kUEZvV3RCWmFQaG44dS81dzRPR2hKQUxiNVhGb1pDSi9BUGhzeDF4UTBnMzVCK3lkWFl1QmxFPQ==/attach/object/ALKDBRZBABADO" alt="img"></p>
+<pre class="line-numbers language-none"><code class="language-none">version: &quot;2&quot;
+networks:
+  dongtainetwork:
+    name: dongtainetwork
+    ipam:
+      config:
+        - subnet: 172.31.200.0&#x2F;24
+services:
+  $MYSQL_STR
+  $REDIS_STR
+  dongtai-webapi:
+    networks:
+      - dongtainetwork
+    image: &quot;$registry&#x2F;dongtai-server:$DONGTAI_SERVER_VER&quot;
+    entrypoint: [&quot;&#x2F;opt&#x2F;dongtai&#x2F;deploy&#x2F;docker&#x2F;entrypoint.sh&quot;, &quot;webapi&quot;]
+    ports:
+      - &quot;8000:8000&quot;
+    restart: always
+    volumes:
+      - $PWD&#x2F;config-tutorial.ini:&#x2F;opt&#x2F;dongtai&#x2F;dongtai_conf&#x2F;conf&#x2F;config.ini
+    depends_on:
+      - dongtai-mysql
+      - dongtai-redis
+    logging:
+      driver: &quot;json-file&quot;
+      options:
+        max-size: &quot;10m&quot;
+  dongtai-web:
+    networks:
+      - dongtainetwork
+    image: &quot;$registry&#x2F;dongtai-web:$CHANGE_THIS_VERSION&quot;
+    restart: always
+    ports:
+      - &quot;$WEB_SERVICE_PORT:80&quot;
+    volumes:
+      - &quot;$PWD&#x2F;nginx.conf-legacy:&#x2F;etc&#x2F;nginx&#x2F;nginx.conf&quot;
+    depends_on:
+      - dongtai-webapi
+    logging:
+      driver: &quot;json-file&quot;
+      options:
+        max-size: &quot;10m&quot;
+  dongtai-server:
+    networks:
+      - dongtainetwork
+    image: &quot;$registry&#x2F;dongtai-server:$DONGTAI_SERVER_VER&quot;
+    restart: always
+    sysctls:
+      net.core.somaxconn: 4096
+    volumes:
+      - &quot;$PWD&#x2F;log&#x2F;:&#x2F;tmp&#x2F;logstash&#x2F;&quot;
+      - $PWD&#x2F;config-tutorial.ini:&#x2F;opt&#x2F;dongtai&#x2F;dongtai_conf&#x2F;conf&#x2F;config.ini
+    logging:
+      driver: &quot;json-file&quot;
+      options:
+        max-size: &quot;10m&quot;
+  dongtai-openapi:
+    networks:
+      - dongtainetwork
+    image: &quot;$registry&#x2F;dongtai-openapi:$CHANGE_THIS_VERSION&quot;
+    restart: always
+    volumes:
+       - &quot;$PWD&#x2F;config-tutorial.ini-legacy:&#x2F;opt&#x2F;dongtai&#x2F;openapi&#x2F;conf&#x2F;config.ini&quot;
+    logging:
+      driver: &quot;json-file&quot;
+      options:
+        max-size: &quot;10m&quot;
+    depends_on:
+      - dongtai-mysql
+  dongtai-engine:
+    networks:
+      - dongtainetwork
+    image: &quot;$registry&#x2F;dongtai-engine:$CHANGE_THIS_VERSION&quot;
+    restart: always
+    volumes:
+      - &quot;$PWD&#x2F;config-tutorial.ini-legacy:&#x2F;opt&#x2F;dongtai&#x2F;engine&#x2F;conf&#x2F;config.ini&quot;
+    logging:
+      driver: &quot;json-file&quot;
+      options:
+        max-size: &quot;10m&quot;
+    depends_on:
+      - dongtai-mysql
+  dongtai-engine-task:
+    networks:
+      - dongtainetwork
+    image: &quot;$registry&#x2F;dongtai-engine:$CHANGE_THIS_VERSION&quot;
+    restart: always
+    command: [&quot;&#x2F;opt&#x2F;dongtai&#x2F;engine&#x2F;docker&#x2F;entrypoint.sh&quot;, &quot;task&quot;]
+    volumes:
+      - &quot;$PWD&#x2F;config-tutorial.ini-legacy:&#x2F;opt&#x2F;dongtai&#x2F;engine&#x2F;conf&#x2F;config.ini&quot;
+    depends_on:
+      - dongtai-engine
+      - dongtai-mysql
+    logging:
+      driver: &quot;json-file&quot;
+      options:
+        max-size: &quot;10m&quot;
+  dongtai-worker-task:
+    networks:
+      - dongtainetwork
+    image: &quot;$registry&#x2F;dongtai-server:$DONGTAI_SERVER_VER&quot;
+    restart: always
+    entrypoint: [&quot;&#x2F;opt&#x2F;dongtai&#x2F;deploy&#x2F;docker&#x2F;entrypoint.sh&quot;, &quot;beat&quot;]
+    volumes:
+      - $PWD&#x2F;config-tutorial.ini:&#x2F;opt&#x2F;dongtai&#x2F;dongtai_conf&#x2F;conf&#x2F;config.ini
+    logging:
+      driver: &quot;json-file&quot;
+      options:
+        max-size: &quot;10m&quot;
+  dongtai-worker-beat:
+    networks:
+      - dongtainetwork
+    image: &quot;$registry&#x2F;dongtai-server:$DONGTAI_SERVER_VER&quot;
+    restart: always
+    entrypoint: [&quot;&#x2F;opt&#x2F;dongtai&#x2F;deploy&#x2F;docker&#x2F;entrypoint.sh&quot;, &quot;worker-beat&quot;]
+    volumes:
+      - $PWD&#x2F;config-tutorial.ini:&#x2F;opt&#x2F;dongtai&#x2F;dongtai_conf&#x2F;conf&#x2F;config.ini
+    logging:
+      driver: &quot;json-file&quot;
+      options:
+        max-size: &quot;10m&quot;
+  dongtai-worker-other:
+    networks:
+      - dongtainetwork
+    image: &quot;$registry&#x2F;dongtai-server:$DONGTAI_SERVER_VER&quot;
+    restart: always
+    entrypoint: [&quot;&#x2F;opt&#x2F;dongtai&#x2F;deploy&#x2F;docker&#x2F;entrypoint.sh&quot;, &quot;worker-other&quot;]
+    volumes:
+      - $PWD&#x2F;config-tutorial.ini:&#x2F;opt&#x2F;dongtai&#x2F;dongtai_conf&#x2F;conf&#x2F;config.ini
+    logging:
+      driver: &quot;json-file&quot;
+      options:
+        max-size: &quot;10m&quot;
+  dongtai-worker-high-freq:
+    networks:
+      - dongtainetwork
+    image: &quot;$registry&#x2F;dongtai-server:$DONGTAI_SERVER_VER&quot;
+    restart: always
+    entrypoint: [&quot;&#x2F;opt&#x2F;dongtai&#x2F;deploy&#x2F;docker&#x2F;entrypoint.sh&quot;, &quot;worker-high-freq&quot;]
+    environment:
+      - DONGTAI_CONCURRENCY&#x3D;-P gevent --concurrency&#x3D;128
+    volumes:
+      - $PWD&#x2F;config-tutorial.ini:&#x2F;opt&#x2F;dongtai&#x2F;dongtai_conf&#x2F;conf&#x2F;config.ini
+    logging:
+      driver: &quot;json-file&quot;
+      options:
+        max-size: &quot;10m&quot;
+  dongtai-worker-sca:
+    networks:
+      - dongtainetwork
+    image: &quot;$registry&#x2F;dongtai-server:$DONGTAI_SERVER_VER&quot;
+    restart: always
+    entrypoint: [&quot;&#x2F;opt&#x2F;dongtai&#x2F;deploy&#x2F;docker&#x2F;entrypoint.sh&quot;, &quot;worker-sca&quot;]
+    environment:
+      - DONGTAI_CONCURRENCY&#x3D;-P gevent --concurrency&#x3D;10
+    volumes:
+      - $PWD&#x2F;config-tutorial.ini:&#x2F;opt&#x2F;dongtai&#x2F;dongtai_conf&#x2F;conf&#x2F;config.ini
+    logging:
+      driver: &quot;json-file&quot;
+      options:
+        max-size: &quot;10m&quot;
+  dongtai-worker-es:
+    networks:
+      - dongtainetwork
+    image: &quot;$registry&#x2F;dongtai-server:$DONGTAI_SERVER_VER&quot;
+    restart: always
+    entrypoint: [&quot;&#x2F;opt&#x2F;dongtai&#x2F;deploy&#x2F;docker&#x2F;entrypoint.sh&quot;, &quot;worker-es&quot;]
+    environment:
+      - DONGTAI_CONCURRENCY&#x3D;-P gevent --concurrency&#x3D;64
+    volumes:
+      - $PWD&#x2F;config-tutorial.ini:&#x2F;opt&#x2F;dongtai&#x2F;dongtai_conf&#x2F;conf&#x2F;config.ini
+    logging:
+      driver: &quot;json-file&quot;
+      options:
+        max-size: &quot;10m&quot;
+  dongtai-logrotate:
+    networks:
+      - dongtainetwork
+    image: &quot;$registry&#x2F;dongtai-logrotate:$DONGTAI_SERVER_VER&quot;
+    restart: always
+    user: root
+    volumes:
+      - &quot;$PWD&#x2F;log&#x2F;:&#x2F;tmp&#x2F;logstash&#x2F;&quot;
+    logging:
+      driver: &quot;json-file&quot;
+      options:
+        max-size: &quot;10m&quot;
+  dongtai-logstash:
+    networks:
+      - dongtainetwork
+    image: &quot;$registry&#x2F;dongtai-logstash:$DONGTAI_SERVER_VER&quot;
+    restart: always
+    user: root
+    environment:
+      - DATABASE&#x3D;$&#123;MYSQL_IP&#125;&#x2F;$&#123;MYSQL_DATABASES&#125;
+      - USERNAME&#x3D;$&#123;MYSQL_USERNAME&#125;
+      - PASSWORD&#x3D;$&#123;MYSQL_PASSWORD&#125;
+    volumes:
+      - &quot;$PWD&#x2F;log&#x2F;:&#x2F;tmp&#x2F;logstash&#x2F;&quot;
+    logging:
+      driver: &quot;json-file&quot;
+      options:
+        max-size: &quot;10m&quot;
+volumes:
+  mysql-vol:<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>使用脚本启动后发现，后台接口还是报404错误。直接把日志拿去问ai，ai提示dongtai-webapi镜像太旧了，而前端镜像目前更新到了最新版本，官方已经没有维护webapi了，在新版本的dongtai-server中自带了dongtai-webapi服务。所以还有改一下配置。</p>
+<p><img src="http://www.kdocs.cn/api/v3/office/copy/YlB0U0d6UUdLNnhJVFlQNzdtRWFUU2loaDVtQmlBL1IvSHpPa0NPemZncjh6dlE5aWttbnNWVmdLY3RXNitvZXh5UExXL2tncE5WTjg3bDRxZXY2U0J0dUxYWWZKVHZDNk1QcE93OEdvcksyREZ0bm1WQjduL3NuTy9FRXhYWXhTL2V5VVVBUFpxTGdVU0xIcXVPcGpJaEdla0dZQUN0YjRENG5VRSs2QnhqNW5ZVTlyYTdzZ3NvSjFjRGVHMlhwNTM3bTN6c2NVK1J1ZDZJWWxGZE5kUEZvV3RCWmFQaG44dS81dzRPR2hKQUxiNVhGb1pDSi9BUGhzeDF4UTBnMzVCK3lkWFl1QmxFPQ==/attach/object/2ZSWNRZBADQFI" alt="img"></p>
+<p>dongtai-webapi的配置修改如下</p>
+<pre class="line-numbers language-none"><code class="language-none">dongtai-webapi:
+    networks:
+      - dongtainetwork
+    image: &quot;$registry&#x2F;dongtai-server:$DONGTAI_SERVER_VER&quot;
+    entrypoint: [&quot;&#x2F;opt&#x2F;dongtai&#x2F;deploy&#x2F;docker&#x2F;entrypoint.sh&quot;, &quot;webapi&quot;]
+    ports:
+      - &quot;8000:8000&quot;
+    restart: always
+    volumes:
+      - $PWD&#x2F;config-tutorial.ini:&#x2F;opt&#x2F;dongtai&#x2F;dongtai_conf&#x2F;conf&#x2F;config.ini
+    depends_on:
+      - dongtai-mysql
+      - dongtai-redis
+    logging:
+      driver: &quot;json-file&quot;
+      options:
+        max-size: &quot;10m&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="Server连接mysql报错缺失字段问题"><a href="#Server连接mysql报错缺失字段问题" class="headerlink" title="Server连接mysql报错缺失字段问题"></a>Server连接mysql报错缺失字段问题</h1><p>前端响应502，查看server的日志发现如下报错</p>
+<pre class="line-numbers language-none"><code class="language-none">(1054, &quot;Unknown column &#39;iast_sensitive_info_rule.system_type&#39; in &#39;where clause&#39;&quot;)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>只要 <code>dongtai-server</code>&#x2F;<code>dongtai-webapi</code> 启动时就抛这个错，Django 会返回 <em>*<em>*</em>*500****</em>* → Nginx 收到 500，再转给前端就成 **<em>*</em>*502******。</p>
+<p>补充数据库字段</p>
+<pre class="line-numbers language-none"><code class="language-none"># 1. 进入 MySQL
+docker exec -it dongtai-dongtai-mysql-1 \
+  mysql -uroot -pdongtai-iast dongtai_webapi
+
+# 2. 手工加缺失列（示例）
+ALTER TABLE iast_sensitive_info_rule ADD COLUMN system_type TINYINT(1) NOT NULL DEFAULT 1;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>如果还有别的列缺失，可让 dongtai-server 跑一次 migrate，发现有缺失字段按上面配置添加进数据库</p>
+<pre class="line-numbers language-none"><code class="language-none">docker exec -it dongtai-dongtai-server-1 \
+  python manage.py migrate --noinput<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>直到执行完迁移全部提示OK</p>
+<p><img src="http://www.kdocs.cn/api/v3/office/copy/YlB0U0d6UUdLNnhJVFlQNzdtRWFUU2loaDVtQmlBL1IvSHpPa0NPemZncjh6dlE5aWttbnNWVmdLY3RXNitvZXh5UExXL2tncE5WTjg3bDRxZXY2U0J0dUxYWWZKVHZDNk1QcE93OEdvcksyREZ0bm1WQjduL3NuTy9FRXhYWXhTL2V5VVVBUFpxTGdVU0xIcXVPcGpJaEdla0dZQUN0YjRENG5VRSs2QnhqNW5ZVTlyYTdzZ3NvSjFjRGVHMlhwNTM3bTN6c2NVK1J1ZDZJWWxGZE5kUEZvV3RCWmFQaG44dS81dzRPR2hKQUxiNVhGb1pDSi9BUGhzeDF4UTBnMzVCK3lkWFl1QmxFPQ==/attach/object/VBW5NRZBACAA6" alt="img"></p>
+<h1 id="启动命令如下"><a href="#启动命令如下" class="headerlink" title="启动命令如下"></a>启动命令如下</h1><pre class="line-numbers language-none"><code class="language-none">.&#x2F;dtctl install -v latest<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="http://www.kdocs.cn/api/v3/office/copy/YlB0U0d6UUdLNnhJVFlQNzdtRWFUU2loaDVtQmlBL1IvSHpPa0NPemZncjh6dlE5aWttbnNWVmdLY3RXNitvZXh5UExXL2tncE5WTjg3bDRxZXY2U0J0dUxYWWZKVHZDNk1QcE93OEdvcksyREZ0bm1WQjduL3NuTy9FRXhYWXhTL2V5VVVBUFpxTGdVU0xIcXVPcGpJaEdla0dZQUN0YjRENG5VRSs2QnhqNW5ZVTlyYTdzZ3NvSjFjRGVHMlhwNTM3bTN6c2NVK1J1ZDZJWWxGZE5kUEZvV3RCWmFQaG44dS81dzRPR2hKQUxiNVhGb1pDSi9BUGhzeDF4UTBnMzVCK3lkWFl1QmxFPQ==/attach/object/66OUVRZBACAEC" alt="img"></p>
+<p>等待一段时间加载好，在用docker ps -a 查看容器进程</p>
+<p>OK，现在都是正常的，没有异常启动的进程</p>
+<p><img src="http://www.kdocs.cn/api/v3/office/copy/YlB0U0d6UUdLNnhJVFlQNzdtRWFUU2loaDVtQmlBL1IvSHpPa0NPemZncjh6dlE5aWttbnNWVmdLY3RXNitvZXh5UExXL2tncE5WTjg3bDRxZXY2U0J0dUxYWWZKVHZDNk1QcE93OEdvcksyREZ0bm1WQjduL3NuTy9FRXhYWXhTL2V5VVVBUFpxTGdVU0xIcXVPcGpJaEdla0dZQUN0YjRENG5VRSs2QnhqNW5ZVTlyYTdzZ3NvSjFjRGVHMlhwNTM3bTN6c2NVK1J1ZDZJWWxGZE5kUEZvV3RCWmFQaG44dS81dzRPR2hKQUxiNVhGb1pDSi9BUGhzeDF4UTBnMzVCK3lkWFl1QmxFPQ==/attach/object/YRSONRZBADACI" alt="img"></p>
+<p>访问一下后台</p>
+<p>&#x2F;api&#x2F;v2&#x2F;*相关的接口也全部响应200正常。到此所有报错解决了，我部署的这个版本是 1.16.0</p>
+<p><img src="http://www.kdocs.cn/api/v3/office/copy/YlB0U0d6UUdLNnhJVFlQNzdtRWFUU2loaDVtQmlBL1IvSHpPa0NPemZncjh6dlE5aWttbnNWVmdLY3RXNitvZXh5UExXL2tncE5WTjg3bDRxZXY2U0J0dUxYWWZKVHZDNk1QcE93OEdvcksyREZ0bm1WQjduL3NuTy9FRXhYWXhTL2V5VVVBUFpxTGdVU0xIcXVPcGpJaEdla0dZQUN0YjRENG5VRSs2QnhqNW5ZVTlyYTdzZ3NvSjFjRGVHMlhwNTM3bTN6c2NVK1J1ZDZJWWxGZE5kUEZvV3RCWmFQaG44dS81dzRPR2hKQUxiNVhGb1pDSi9BUGhzeDF4UTBnMzVCK3lkWFl1QmxFPQ==/attach/object/Q5OOPRZBACQH2" alt="img"></p>
+</body>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://egstar.top">Egstar</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://egstar.top/post/144a22d3.html">http://egstar.top/post/144a22d3.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://egstar.top" target="_blank">Egstar站长</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/SDL%E5%BB%BA%E8%AE%BE/">SDL建设</a></div><div class="post_share"><div class="social-share" data-image="/images/250807.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/post/3f9d8036.html" title="ShellCode免杀平台-EasyTools"><img class="cover" src="/images/250621.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">ShellCode免杀平台-EasyTools</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/images/pkds.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Egstar</div><div class="author-info__description">安全秘辛，古文经典</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">36</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">26</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Egstar1"><i class="fab fa-github"></i><span>我的Github</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Egstar1" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:1337995241@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%88%E4%BF%AE%E6%94%B9docker%E7%9A%84%E9%95%9C%E5%83%8F%E6%BA%90"><span class="toc-number">1.</span> <span class="toc-text">先修改docker的镜像源</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8B%89%E5%8F%96%E9%95%9C%E5%83%8F"><span class="toc-number">2.</span> <span class="toc-text">拉取镜像</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9-dtctl%E5%AE%89%E8%A3%85%E8%84%9A%E6%9C%AC%E7%9A%84%E9%AA%8C%E8%AF%81%E5%87%BD%E6%95%B0"><span class="toc-number">3.</span> <span class="toc-text">修改 dtctl安装脚本的验证函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F-docker-compose-%E7%9A%84%E7%89%88%E6%9C%AC%E8%A6%81%E6%B1%82version-2-1-0%E5%8F%8A%E4%BB%A5%E4%B8%8A"><span class="toc-number">4.</span> <span class="toc-text">注意 docker compose 的版本要求version 2.1.0及以上</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Docker-compose-v2%E6%A3%80%E6%B5%8B%E9%97%AE%E9%A2%98"><span class="toc-number">5.</span> <span class="toc-text">Docker-compose v2检测问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%9B%BD%E5%86%85%E8%BF%87%E6%9C%9F%E7%9A%84%E9%98%BF%E9%87%8C%E4%BA%91%E9%95%9C%E5%83%8F%E4%BB%93%E5%BA%93%E5%AF%BC%E8%87%B4%E8%AE%BF%E9%97%AE%E5%A4%B1%E8%B4%A5%E9%97%AE%E9%A2%98"><span class="toc-number">6.</span> <span class="toc-text">使用国内过期的阿里云镜像仓库导致访问失败问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%8E%E5%8F%B0%E6%8E%A5%E5%8F%A3%E6%8A%A5%E9%94%99404%E9%97%AE%E9%A2%98"><span class="toc-number">7.</span> <span class="toc-text">后台接口报错404问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Server%E8%BF%9E%E6%8E%A5mysql%E6%8A%A5%E9%94%99%E7%BC%BA%E5%A4%B1%E5%AD%97%E6%AE%B5%E9%97%AE%E9%A2%98"><span class="toc-number">8.</span> <span class="toc-text">Server连接mysql报错缺失字段问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E5%91%BD%E4%BB%A4%E5%A6%82%E4%B8%8B"><span class="toc-number">9.</span> <span class="toc-text">启动命令如下</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/144a22d3.html" title="洞态IAST部署"><img src="/images/250807.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="洞态IAST部署"/></a><div class="content"><a class="title" href="/post/144a22d3.html" title="洞态IAST部署">洞态IAST部署</a><time datetime="2025-08-07T06:39:27.000Z" title="发表于 2025-08-07 14:39:27">2025-08-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/3f9d8036.html" title="ShellCode免杀平台-EasyTools"><img src="/images/250621.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ShellCode免杀平台-EasyTools"/></a><div class="content"><a class="title" href="/post/3f9d8036.html" title="ShellCode免杀平台-EasyTools">ShellCode免杀平台-EasyTools</a><time datetime="2025-05-28T09:20:43.000Z" title="发表于 2025-05-28 17:20:43">2025-05-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/cec152a6.html" title="等保2.0"><img src="/images/250306.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="等保2.0"/></a><div class="content"><a class="title" href="/post/cec152a6.html" title="等保2.0">等保2.0</a><time datetime="2025-03-06T02:09:42.000Z" title="发表于 2025-03-06 10:09:42">2025-03-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/56f57219.html" title="WAF防护绕过"><img src="/images/250225_1.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="WAF防护绕过"/></a><div class="content"><a class="title" href="/post/56f57219.html" title="WAF防护绕过">WAF防护绕过</a><time datetime="2025-02-25T01:28:55.000Z" title="发表于 2025-02-25 09:28:55">2025-02-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/da6acaa9.html" title="《增广贤文》原文赏析"><img src="/images/250220.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="《增广贤文》原文赏析"/></a><div class="content"><a class="title" href="/post/da6acaa9.html" title="《增广贤文》原文赏析">《增广贤文》原文赏析</a><time datetime="2025-02-20T08:48:22.000Z" title="发表于 2025-02-20 16:48:22">2025-02-20</time></div></div></div></div></div></div></main><footer id="footer" style="background: transparent"><div id="footer-wrap"><div class="copyright">&copy;2025 By Egstar</div><div class="footer_custom_text">I wish you to become your own sun, no need to rely on who's light.<p><a target="_blank" href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a>&nbsp;<a target="_blank" href="https://butterfly.js.org/"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a>&nbsp;<a target="_blank" href="https://www.jsdelivr.com/"><img src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a> &nbsp;<a target="_blank" href="https://vercel.com/ "><img src="https://img.shields.io/badge/Hosted-Vervel-brightgreen?style=flat&logo=Vercel" title="本站采用双线部署，默认线路托管于Vercel"></a>&nbsp;<a target="_blank" href="https://vercel.com/ "><img src="https://img.shields.io/badge/Hosted-Coding-0cedbe?style=flat&logo=Codio" title="本站采用双线部署，联通线路托管于Coding"></a>&nbsp;<a target="_blank" href="https://github.com/"><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Gtihub托管"></a>&nbsp;<a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo.egstar.top/',
+      region: 'ap-shanghai',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo.egstar.top/',
+      region: 'ap-shanghai',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script src="/statics/mouse_hover.js"></script><script src="/statics/chocolate.js"></script><script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script><script data-pjax defer src="https://npm.elemecdn.com/tzy-blog/lib/js/theme/chocolate.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></body></html>
