@@ -1,0 +1,303 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>Suricata 解决缺失请求体与响应体的问题 | Egstar站长</title><meta name="author" content="Egstar"><meta name="copyright" content="Egstar"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="suricata默认在http日志中不输出请求体与响应体，本篇文章则给出简洁的解决方案让suricata能够输出body。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Suricata 解决缺失请求体与响应体的问题">
+<meta property="og:url" content="http://egstar.top/post/5a797a55.html">
+<meta property="og:site_name" content="Egstar站长">
+<meta property="og:description" content="suricata默认在http日志中不输出请求体与响应体，本篇文章则给出简洁的解决方案让suricata能够输出body。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://egstar.top/images/251030.jpg">
+<meta property="article:published_time" content="2025-10-30T03:30:41.000Z">
+<meta property="article:modified_time" content="2025-10-30T03:47:56.913Z">
+<meta property="article:author" content="Egstar">
+<meta property="article:tag" content="Suricata">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://egstar.top/images/251030.jpg"><link rel="shortcut icon" href="/images/favicon.png"><link rel="canonical" href="http://egstar.top/post/5a797a55.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: Egstar","link":"链接: ","source":"来源: Egstar站长","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Suricata 解决缺失请求体与响应体的问题',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-10-30 11:47:56'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/modify.css"><link rel="stylesheet" href="/css/page.css"><link rel="stylesheet" href="/css/font.css"><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 7.2.0"></head><body><link rel="stylesheet" href="/css/loading-bar.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/pkds.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">37</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">26</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/catlog/"><i class="fa-fw fa-solid fa-pen-to-square"></i><span> 更新日志</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 文娱</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page child" href="/classics/"><i class="fa-fw fa-solid fa-book-open-reader"></i><span> 古典</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-comments"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></li><li><a class="site-page child" href="/comments/"><i class="fa-fw fa-solid fa-message"></i><span> 留言板</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/images/251030.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Egstar站长"><span class="site-name">Egstar站长</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/catlog/"><i class="fa-fw fa-solid fa-pen-to-square"></i><span> 更新日志</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 文娱</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li><li><a class="site-page child" href="/classics/"><i class="fa-fw fa-solid fa-book-open-reader"></i><span> 古典</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa-solid fa-comments"></i><span> 关于</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></li><li><a class="site-page child" href="/comments/"><i class="fa-fw fa-solid fa-message"></i><span> 留言板</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Suricata 解决缺失请求体与响应体的问题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-10-30T03:30:41.000Z" title="发表于 2025-10-30 11:30:41">2025-10-30</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-10-30T03:47:56.913Z" title="更新于 2025-10-30 11:47:56">2025-10-30</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AE%89%E5%85%A8%E5%BB%BA%E8%AE%BE/">安全建设</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">756</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span id="" data-flag-title="Suricata 解决缺失请求体与响应体的问题"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="twikoo_visitors"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><body>
+
+<h1 id="Suricata-介绍"><a href="#Suricata-介绍" class="headerlink" title="Suricata 介绍"></a>Suricata 介绍</h1><p>Suricata 是一款强大的网络入侵检测和防御系统（NIDS&#x2F;NIPS），且是开源的工具，拥有庞大的社区支持。suricata 支持对 HTTP 流量进行深度解析，包括抓取 HTTP 请求和响应的报头信息。除 http 流量外，suricata 还能解析多种协议如 ssh、ftp、dns、tcp等常见的通信协议。因此，使用 suricata 来捕获服务器的流量能够十分方便安全人员对流量进行审计分析。</p>
+<h1 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h1><p>suricata 默认不会对 http 事件类型的流量输出请求体与响应体，则会让溯源工作缺失许多重要的信息。因此，本文重点解决 suricata 对 body 的解析与输出。</p>
+<p><img src="/../picture/Suricata-%E8%A7%A3%E5%86%B3%E7%BC%BA%E5%A4%B1%E8%AF%B7%E6%B1%82%E4%BD%93%E4%B8%8E%E5%93%8D%E5%BA%94%E4%BD%93%E7%9A%84%E9%97%AE%E9%A2%98/image-20251030113914302.png" alt="image-20251030113914302"></p>
+<p>首先打开 suricata.yaml 配置，修改 output -&gt; eve-log -&gt; http 的配置，配置记录 body（没有则直接新增，这段配置适配版本 suricata 7.x，怕出错请先备份 suricata.yaml）</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">outputs</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">eve-log</span><span class="token punctuation">:</span>
+      <span class="token key atrule">types</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">http</span><span class="token punctuation">:</span>
+            <span class="token key atrule">extended</span><span class="token punctuation">:</span> yes     
+            <span class="token key atrule">request-body</span><span class="token punctuation">:</span> yes           <span class="token comment"># 记录请求体（POST/PUT 内容）</span>
+            <span class="token key atrule">response-body</span><span class="token punctuation">:</span> yes          <span class="token comment"># 记录响应体（返回的 JSON/HTML 等）</span>
+            <span class="token key atrule">request-body-limit</span><span class="token punctuation">:</span> 10KB    <span class="token comment"># 单个请求体最多记 10 kB（按需改）</span>
+            <span class="token key atrule">response-body-limit</span><span class="token punctuation">:</span> 10KB   <span class="token comment"># 单个响应体最多记 10 kB（按需改）</span>
+            <span class="token key atrule">dump-all-headers</span><span class="token punctuation">:</span> both
+
+<span class="token key atrule">app-layer</span><span class="token punctuation">:</span>
+  <span class="token comment"># error-policy: ignore</span>
+  <span class="token key atrule">protocols</span><span class="token punctuation">:</span>
+         <span class="token key atrule">http</span><span class="token punctuation">:</span>
+           <span class="token key atrule">enabled</span><span class="token punctuation">:</span> yes
+           <span class="token key atrule">decompress-body</span><span class="token punctuation">:</span> yes
+      <span class="token comment"># 強制把 chunked body 重組</span>
+           <span class="token key atrule">response-body-chunked</span><span class="token punctuation">:</span> yes
+           <span class="token key atrule">request-body-chunked</span><span class="token punctuation">:</span> yes
+           <span class="token key atrule">http-body-minimal-inspect-percentage</span><span class="token punctuation">:</span> <span class="token number">1</span>
+           <span class="token key atrule">http-body-fingerprint-limit</span><span class="token punctuation">:</span> 50mb
+           <span class="token key atrule">libhtp</span><span class="token punctuation">:</span>
+              <span class="token key atrule">default-config</span><span class="token punctuation">:</span>
+                <span class="token key atrule">personality</span><span class="token punctuation">:</span> IDS
+                <span class="token key atrule">request-body-limit</span><span class="token punctuation">:</span> 10mb
+                <span class="token key atrule">response-body-limit</span><span class="token punctuation">:</span> 10mb
+
+                <span class="token key atrule">request-body-minimal-inspect-size</span><span class="token punctuation">:</span> 32kb
+                <span class="token key atrule">request-body-inspect-window</span><span class="token punctuation">:</span> 4kb
+                <span class="token key atrule">response-body-minimal-inspect-size</span><span class="token punctuation">:</span> 40kb
+                <span class="token key atrule">response-body-inspect-window</span><span class="token punctuation">:</span> 16kb
+                <span class="token comment"># response body decompression (0 disables)</span>
+                <span class="token key atrule">response-body-decompress-layer-limit</span><span class="token punctuation">:</span> <span class="token number">2</span>
+                <span class="token comment"># auto will use http-body-inline mode in IPS mode, yes or no set it statically</span>
+                <span class="token key atrule">http-body-inline</span><span class="token punctuation">:</span> auto<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>然后需要修改一下源码，找到 suricata 项目目录下的 src 目录，然后修改 output-json-http.c 文件。</p>
+<p>先备份 <code>cp output-json-http.c output-json-http.c.bak</code></p>
+<p><img src="/../picture/Suricata-%E8%A7%A3%E5%86%B3%E7%BC%BA%E5%A4%B1%E8%AF%B7%E6%B1%82%E4%BD%93%E4%B8%8E%E5%93%8D%E5%BA%94%E4%BD%93%E7%9A%84%E9%97%AE%E9%A2%98/image-20251030114110854.png" alt="image-20251030114110854"></p>
+<p>新增一个函数，放到 <code>static void EveHttpLogJSONBasic </code>函数之前（这段函数会处理 body 字段并确保对中文 utf-8 编码不会乱码）</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">&#x2F;*自写的保留中文的函数*&#x2F;
+static void BodyUtf8String(JsonBuilder *js, Flow *f, uint64_t tx_id, const char *key)
+&#123;
+    HtpState *htp_state &#x3D; (HtpState *)FlowGetAppState(f);
+    if (htp_state) &#123;
+        htp_tx_t *tx &#x3D; AppLayerParserGetTx(IPPROTO_TCP, ALPROTO_HTTP1, htp_state, tx_id);
+        if (tx) &#123;
+            HtpTxUserData *htud &#x3D; (HtpTxUserData *)htp_tx_get_user_data(tx);
+            if (htud) &#123;
+                HtpBody *body &#x3D; NULL;
+                if (strcmp(key, &quot;http_request_body&quot;) &#x3D;&#x3D; 0)
+                    body &#x3D; &amp;htud-&gt;request_body;
+                else if (strcmp(key, &quot;http_response_body&quot;) &#x3D;&#x3D; 0)
+                    body &#x3D; &amp;htud-&gt;response_body;
+
+                if (body &amp;&amp; body-&gt;sb) &#123;
+                    const uint8_t *data;
+                    uint32_t data_len;
+                    uint64_t offset;
+                    if (StreamingBufferGetData(body-&gt;sb, &amp;data, &amp;data_len, &amp;offset) &#x3D;&#x3D; 0)
+                        return;
+
+                    &#x2F;* 直接当 UTF-8 字符串写，不转义中文 *&#x2F;
+                    jb_set_string_from_bytes(js, key, data, data_len);
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>然后找到 <code>static int JsonHttpLogger</code> 函数，在 <code>EveHttpLogJSON(jhl, js, tx, tx_id);</code>后面新增两个函数调用，用来打印请求body与响应body</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">BodyUtf8String(js, f, tx_id, &quot;http_request_body&quot;);
+BodyUtf8String(js, f, tx_id, &quot;http_response_body&quot;);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p><img src="/../picture/Suricata-%E8%A7%A3%E5%86%B3%E7%BC%BA%E5%A4%B1%E8%AF%B7%E6%B1%82%E4%BD%93%E4%B8%8E%E5%93%8D%E5%BA%94%E4%BD%93%E7%9A%84%E9%97%AE%E9%A2%98/image-20251030114217906.png" alt="image-20251030114217906"></p>
+<p>准备事项完成后，重新编译安装 suricata</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 在suricata源码目录下</span>
+<span class="token function">make</span> -j<span class="token variable"><span class="token variable">$(</span>nproc<span class="token variable">)</span></span>
+<span class="token function">sudo</span> <span class="token function">make</span> <span class="token function">install</span>
+<span class="token function">sudo</span> systemctl restart suricata<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>然后尝试查看 eve.log 的 http 日志，现在有明文的响应体与请求体了，且不会中文乱码。</p>
+<p><img src="/../picture/Suricata-%E8%A7%A3%E5%86%B3%E7%BC%BA%E5%A4%B1%E8%AF%B7%E6%B1%82%E4%BD%93%E4%B8%8E%E5%93%8D%E5%BA%94%E4%BD%93%E7%9A%84%E9%97%AE%E9%A2%98/image-20251030114305316.png" alt="image-20251030114305316"></p>
+</body>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://egstar.top">Egstar</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://egstar.top/post/5a797a55.html">http://egstar.top/post/5a797a55.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://egstar.top" target="_blank">Egstar站长</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Suricata/">Suricata</a></div><div class="post_share"><div class="social-share" data-image="/images/251030.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/post/144a22d3.html" title="洞态IAST部署"><img class="cover" src="/images/250807.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">洞态IAST部署</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/images/pkds.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Egstar</div><div class="author-info__description">安全秘辛，古文经典</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">37</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">26</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Egstar1"><i class="fab fa-github"></i><span>我的Github</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Egstar1" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:1337995241@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Suricata-%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">Suricata 介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3"><span class="toc-number">2.</span> <span class="toc-text">问题解决</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/5a797a55.html" title="Suricata 解决缺失请求体与响应体的问题"><img src="/images/251030.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Suricata 解决缺失请求体与响应体的问题"/></a><div class="content"><a class="title" href="/post/5a797a55.html" title="Suricata 解决缺失请求体与响应体的问题">Suricata 解决缺失请求体与响应体的问题</a><time datetime="2025-10-30T03:30:41.000Z" title="发表于 2025-10-30 11:30:41">2025-10-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/144a22d3.html" title="洞态IAST部署"><img src="/images/250807.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="洞态IAST部署"/></a><div class="content"><a class="title" href="/post/144a22d3.html" title="洞态IAST部署">洞态IAST部署</a><time datetime="2025-08-07T06:39:27.000Z" title="发表于 2025-08-07 14:39:27">2025-08-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/3f9d8036.html" title="ShellCode免杀平台-EasyTools"><img src="/images/250621.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ShellCode免杀平台-EasyTools"/></a><div class="content"><a class="title" href="/post/3f9d8036.html" title="ShellCode免杀平台-EasyTools">ShellCode免杀平台-EasyTools</a><time datetime="2025-05-28T09:20:43.000Z" title="发表于 2025-05-28 17:20:43">2025-05-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/cec152a6.html" title="等保2.0"><img src="/images/250306.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="等保2.0"/></a><div class="content"><a class="title" href="/post/cec152a6.html" title="等保2.0">等保2.0</a><time datetime="2025-03-06T02:09:42.000Z" title="发表于 2025-03-06 10:09:42">2025-03-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/56f57219.html" title="WAF防护绕过"><img src="/images/250225_1.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="WAF防护绕过"/></a><div class="content"><a class="title" href="/post/56f57219.html" title="WAF防护绕过">WAF防护绕过</a><time datetime="2025-02-25T01:28:55.000Z" title="发表于 2025-02-25 09:28:55">2025-02-25</time></div></div></div></div></div></div></main><footer id="footer" style="background: transparent"><div id="footer-wrap"><div class="copyright">&copy;2025 By Egstar</div><div class="footer_custom_text">I wish you to become your own sun, no need to rely on who's light.<p><a target="_blank" href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a>&nbsp;<a target="_blank" href="https://butterfly.js.org/"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a>&nbsp;<a target="_blank" href="https://www.jsdelivr.com/"><img src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a> &nbsp;<a target="_blank" href="https://vercel.com/ "><img src="https://img.shields.io/badge/Hosted-Vervel-brightgreen?style=flat&logo=Vercel" title="本站采用双线部署，默认线路托管于Vercel"></a>&nbsp;<a target="_blank" href="https://vercel.com/ "><img src="https://img.shields.io/badge/Hosted-Coding-0cedbe?style=flat&logo=Codio" title="本站采用双线部署，联通线路托管于Coding"></a>&nbsp;<a target="_blank" href="https://github.com/"><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Gtihub托管"></a>&nbsp;<a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo.egstar.top/',
+      region: 'ap-shanghai',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo.egstar.top/',
+      region: 'ap-shanghai',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script src="/statics/mouse_hover.js"></script><script src="/statics/chocolate.js"></script><script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script><script data-pjax defer src="https://npm.elemecdn.com/tzy-blog/lib/js/theme/chocolate.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></body></html>
