@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="800" xmlns="http://www.w3.org/2000/svg">
+  <!-- 渐变背景 -->
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4f46e5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <rect width="100%" height="100%" fill="url(#grad1)"/>
+  
+  <!-- AI大脑图标 -->
+  <circle cx="600" cy="300" r="120" fill="white" opacity="0.1"/>
+  <path d="M600,180 Q720,200 600,420 Q480,200 600,180 Z" fill="none" stroke="white" stroke-width="8" opacity="0.8"/>
+  <circle cx="600" cy="300" r="60" fill="none" stroke="white" stroke-width="6" opacity="0.6"/>
+  
+  <!-- 知识流动线条 -->
+  <path d="M300,500 Q450,450 600,500 Q750,550 900,500" fill="none" stroke="white" stroke-width="4" opacity="0.5"/>
+  <path d="M300,550 Q450,500 600,550 Q750,600 900,550" fill="none" stroke="white" stroke-width="4" opacity="0.5"/>
+  
+  <!-- 标题文字 -->
+  <text x="600" y="650" text-anchor="middle" font-family="Arial, sans-serif" font-size="48" fill="white" font-weight="bold">
+    AI × 知识管理
+  </text>
+  <text x="600" y="700" text-anchor="middle" font-family="Arial, sans-serif" font-size="32" fill="white" opacity="0.8">
+    价值创造新范式
+  </text>
+  
+  <!-- 装饰点 -->
+  <circle cx="200" cy="200" r="10" fill="white" opacity="0.3"/>
+  <circle cx="1000" cy="150" r="8" fill="white" opacity="0.3"/>
+  <circle cx="150" cy="600" r="12" fill="white" opacity="0.3"/>
+  <circle cx="1050" cy="650" r="6" fill="white" opacity="0.3"/>
+</svg>
