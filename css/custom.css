@@ -26,13 +26,25 @@
     width: 12px;
     height: 12px;
     background: #fff;
-    border: 2px solid #007bff;
+    border: 2px solid var(--theme-primary);
     border-radius: 50%;
   }
   
   .timeline-content {
     margin-left: 40px;
     padding: 10px;
-    background: #f8f9fa;
+    background: rgba(193, 31, 57, 0.05);
     border-radius: 5px;
+  }
+
+  [data-theme='dark'] .timeline::before {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  [data-theme='dark'] .timeline-item::before {
+    background: #1c1c1c;
+  }
+
+  [data-theme='dark'] .timeline-content {
+    background: rgba(255, 255, 255, 0.06);
   }

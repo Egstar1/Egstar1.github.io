@@ -1,63 +1,88 @@
+/* ==========================================================================
+   站点主题覆写：毛玻璃卡片 + 插画背景适配 + 红色体系收敛
+   主色/高亮统一取自 _config.butterfly.yml 的 theme_color（#c11f39 / #dc143c）
+   ========================================================================== */
+
+/* ---------- 设计变量 ---------- */
+:root {
+  --theme-primary: #c11f39;
+  --glass-bg: rgba(255, 255, 255, 0.75);
+  --glass-border: rgba(193, 31, 57, 0.12);
+  --glass-shadow: 0 6px 22px rgba(7, 17, 27, 0.07);
+  --glass-shadow-hover: 0 10px 30px rgba(193, 31, 57, 0.16);
+}
+
+[data-theme='dark'] {
+  --glass-bg: rgba(24, 24, 28, 0.72);
+  --glass-border: rgba(220, 20, 60, 0.2);
+  --glass-shadow: 0 6px 22px rgba(0, 0, 0, 0.45);
+  --glass-shadow-hover: 0 10px 30px rgba(0, 0, 0, 0.62);
+}
+
+/* ---------- 背景插画适配 ---------- */
+/* 亮色模式：插画保持原样全显，不加任何遮罩 */
+/* 深色模式：只做轻度压暗，否则白色正文压在插画亮部会糊掉 */
+[data-theme='dark'] #web_bg::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+
+/* 头图保持透明，让插画直接作为首屏主视觉 */
+#page-header::before {
+  background: transparent !important;
+}
+
+/* 首屏导航叠在插画上，补一层顶部渐变保证白色文字始终可读 */
+#page-header:not(.nav-fixed) #nav {
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.34) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+/* ---------- 毛玻璃卡片 ---------- */
 .layout > div:first-child:not(.recent-posts),
 #recent-posts > .recent-post-item,
 #aside-content .card-widget,
+#post,
+#page,
+#archive,
+#card-toc,
 .layout > .recent-posts .pagination > *:not(.space) {
-  /* 第四个参数表示透明度，越小越透明 */
-  background: rgba(239,239,239,0.98);
+  background: var(--glass-bg) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 12px;
+  box-shadow: var(--glass-shadow);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+  backdrop-filter: blur(14px) saturate(150%);
 }
 
-[data-theme="dark"]
-  #aside-content .card-widget{
-      background: rgba(0, 0, 0, 0.5)!important;
-    }
-[data-theme="dark"]    /*div#post 这是个文章页的区块*/
-  div#post{
-    background: rgba(0, 0, 0, 0.5)!important;
-    border: 1px solid #d62440; /* 设置边框为2像素宽度，实线样式，颜色为紫色 */
-    }
-[data-theme="dark"]      /*这个是侧边栏卡片*/
-  div.card-widget{
-    background: rgba(0, 0, 0, 0.5)!important;
-    border: 1px solid #d62440; /* 设置边框为2像素宽度，实线样式，颜色为紫色 */
-    }
-[data-theme="dark"]        /*这是设置主页文章区块的边框线条*/
-  div.recent-post-item{
-    background: rgba(0, 0, 0, 0.5)!important;
-    border: 1px solid #d62440; /* 设置边框为2像素宽度，实线样式，颜色为紫色 */
-    }
-[data-theme="dark"]        /*这是设置主页文章区块的边框线条*/
-  div#page{
-    background: rgba(0, 0, 0, 0.5)!important;
-    border: 1px solid #d62440; /* 设置边框为2像素宽度，实线样式，颜色为紫色 */
-    }
-[data-theme="dark"]        /*这是设置主页文章区块的边框线条*/
-  div#archive{
-    background: rgba(0, 0, 0, 0.5)!important;
-    border: 1px solid #d62440; /* 设置边框为2像素宽度，实线样式，颜色为薰衣草淡紫色 */
-    }
+#recent-posts > .recent-post-item {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
 
-[data-theme="light"]
-  div#post{
-    border: 2px solid #E6E6FA; /* 设置边框为2像素宽度，实线样式，颜色为紫色 */
-    }
-  div.card-widget{
-    border: 2px solid #E6E6FA; /* 设置边框为2像素宽度，实线样式，颜色为紫色 */
-    }
-  div.recent-post-item{
-    border: 1px solid #E6E6FA; /* 设置边框为2像素宽度，实线样式，颜色为薰衣草淡紫色 */
-    }
-  div#page{
-    border: 1px solid #E6E6FA; /* 设置边框为2像素宽度，实线样式，颜色为薰衣草淡紫色 */
-    }
-  div#archive{
-    border: 1px solid #E6E6FA; /* 设置边框为2像素宽度，实线样式，颜色为薰衣草淡紫色 */
-    }
-  nav#nav.show {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  }
+#recent-posts > .recent-post-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--glass-shadow-hover);
+}
 
+/* ---------- 可读性修正 ---------- */
+/* 目录右上角百分比：原 #a9a9a9 在浅底上对比度仅 2:1 */
+.toc-percentage {
+  color: var(--theme-primary) !important;
+}
 
-/* 头图黑色遮罩层透明 */
-#page-header::before{
-  background: transparent!important;
+/* 分页箭头：原 #99a9bf 几乎看不见 */
+.pagination .extend {
+  color: #5c5c5c !important;
+}
+
+[data-theme='dark'] .pagination .extend {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
+/* ---------- 正文排版 ---------- */
+#article-container {
+  line-height: 1.9;
 }
