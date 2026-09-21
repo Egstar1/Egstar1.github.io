@@ -22,7 +22,7 @@ if (currentTheme === 'light') {
         .${hoverClass} #post:hover,
         .${hoverClass} #archive:hover,
         .${hoverClass} #page:hover {
-            border-color: #DC143C;
+            border-color: var(--theme-primary);
         }
     `;
     document.head.appendChild(style);

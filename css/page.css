@@ -1,22 +1,25 @@
 /* ==========================================================================
-   站点主题覆写：毛玻璃卡片 + 插画背景适配 + 红色体系收敛
-   主色/高亮统一取自 _config.butterfly.yml 的 theme_color（#c11f39 / #dc143c）
+   站点主题覆写：毛玻璃卡片 + 插画背景适配
+   蓝调主色取自背景插画 an1.svg 的调色板（#1671A6 / #2B8EBF）
+   配置入口：_config.butterfly.yml 的 theme_color
    ========================================================================== */
 
 /* ---------- 设计变量 ---------- */
 :root {
-  --theme-primary: #c11f39;
+  --theme-primary: #1671a6;
   --glass-bg: rgba(255, 255, 255, 0.75);
-  --glass-border: rgba(193, 31, 57, 0.12);
+  --glass-border: rgba(22, 113, 166, 0.14);
   --glass-shadow: 0 6px 22px rgba(7, 17, 27, 0.07);
-  --glass-shadow-hover: 0 10px 30px rgba(193, 31, 57, 0.16);
+  --glass-shadow-hover: 0 10px 30px rgba(22, 113, 166, 0.18);
+  --reading-bg: #ffffff;
 }
 
 [data-theme='dark'] {
   --glass-bg: rgba(24, 24, 28, 0.72);
-  --glass-border: rgba(220, 20, 60, 0.2);
+  --glass-border: rgba(50, 187, 219, 0.22);
   --glass-shadow: 0 6px 22px rgba(0, 0, 0, 0.45);
   --glass-shadow-hover: 0 10px 30px rgba(0, 0, 0, 0.62);
+  --reading-bg: #121212;
 }
 
 /* ---------- 背景插画适配 ---------- */
@@ -41,13 +44,19 @@
   background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.34) 0%, rgba(0, 0, 0, 0) 100%);
 }
 
-/* ---------- 毛玻璃卡片 ---------- */
-.layout > div:first-child:not(.recent-posts),
+/* 雪花画布：覆盖顶图但不拦截鼠标事件 */
+.snow-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ---------- 毛玻璃：页面框架与侧边栏 ---------- */
+.layout > div:first-child:not(.recent-posts):not(#post):not(#page),
 #recent-posts > .recent-post-item,
 #aside-content .card-widget,
-#post,
-#page,
-#archive,
 #card-toc,
 .layout > .recent-posts .pagination > *:not(.space) {
   background: var(--glass-bg) !important;
@@ -56,6 +65,16 @@
   box-shadow: var(--glass-shadow);
   -webkit-backdrop-filter: blur(14px) saturate(150%);
   backdrop-filter: blur(14px) saturate(150%);
+}
+
+/* ---------- 阅读区：实底不透明 ---------- */
+/* 长文容器不做透明，背景插画不进入正文区域，避免干扰阅读 */
+#post,
+#page {
+  background: var(--reading-bg) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 12px;
+  box-shadow: var(--glass-shadow);
 }
 
 #recent-posts > .recent-post-item {

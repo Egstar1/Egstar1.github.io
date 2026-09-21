@@ -1,56 +1,153 @@
 /*
- * @Author: tzy1997
- * @Date: 2020-12-15 20:55:25
- * @LastEditors: tzy1997
- * @LastEditTime: 2021-01-12 19:02:25
+ * 顶图雪花特效
+ * 说明：原文件是 tzy 的气泡特效（circleMagic），且拼接符缺失已损坏；
+ *      这里重写为原生实现，不依赖 jQuery。
+ * 调参：改下面 CONFIG 即可。density 越大雪花越少，speed 越小下落越慢。
+ * 注意：新增/修改后需重启 hexo server 或刷新页面（本文件不参与 pjax 重载）。
  */
+(function () {
+  'use strict';
 
-$(function() {
-    // 气泡
-    function bubble() {
-        $('#page-header').circleMagic({
-            radius: 10,
-            density: .2,
-            color: 'rgba(255,255,255,.4)',
-            clearOffset: 0.99
-        });
-    }! function(p) {
-        p.fn.circleMagic = function(t) {
-            var o, a, n, r, e = !0,
-                i = [],
-                d = p.extend({ color: "rgba(255,0,0,.5)", radius: 10, density: .3, clearOffset: .2 }, t),
-                l = this[0];
+  var CONFIG = {
+    density: 34,       // 每多少像素宽度一颗雪花（越大越少）
+    maxCount: 60,      // 雪花数量上限
+    minRadius: 1.2,    // 最小半径(px)
+    maxRadius: 3.2,    // 最大半径(px)
+    minSpeed: 0.25,    // 最小下落速度(px/帧)
+    maxSpeed: 0.7,     // 最大下落速度(px/帧)
+    swayAmp: 16,       // 左右摆动幅度(px)
+    swaySpeed: 0.012   // 摆动频率
+  };
 
-            function c() { e = !(document.body.scrollTop > a) }
+  var rafId = null;
 
-            function s() { o = l.clientWidth, a = l.clientHeight, l.height = a "px", n.width = o, n.height = a }
+  // 柔边雪花贴图，预渲染一次避免每帧创建渐变
+  var sprite = (function () {
+    var size = 64;
+    var c = document.createElement('canvas');
+    c.width = size;
+    c.height = size;
+    var g2d = c.getContext('2d');
+    var grad = g2d.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
+    grad.addColorStop(0, 'rgba(255,255,255,1)');
+    grad.addColorStop(0.45, 'rgba(255,255,255,0.85)');
+    grad.addColorStop(1, 'rgba(255,255,255,0)');
+    g2d.fillStyle = grad;
+    g2d.beginPath();
+    g2d.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2);
+    g2d.fill();
+    return c;
+  })();
 
-            function h() {
-                if (e)
-                    for (var t in r.clearRect(0, 0, o, a), i) i[t].draw();
-                requestAnimationFrame(h)
-            }
+  function rand(min, max) {
+    return min + Math.random() * (max - min);
+  }
 
-            function f() {
-                var t = this;
+  function init() {
+    if (rafId !== null) {
+      cancelAnimationFrame(rafId);
+      rafId = null;
+    }
 
-                function e() { t.pos.x = Math.random() * o, t.pos.y = a 100 * Math.random(), t.alpha = .1 Math.random() * d.clearOffset, t.scale = .1 .3 * Math.random(), t.speed = Math.random(), "random" === d.color ? t.color = "rgba(" Math.floor(255 * Math.random()) ", " Math.floor(0 * Math.random()) ", " Math.floor(0 * Math.random()) ", " Math.random().toPrecision(2) ")" : t.color = d.color }
-                t.pos = {}, e(), this.draw = function() { t.alpha <= 0 && e(), t.pos.y -= t.speed, t.alpha -= 5e-4, r.beginPath(), r.arc(t.pos.x, t.pos.y, t.scale * d.radius, 0, 2 * Math.PI, !1), r.fillStyle = t.color, r.fill(), r.closePath() }
-            }! function() {
-                o = l.offsetWidth, a = l.offsetHeight,
-                    function() {
-                        var t = document.createElement("canvas");
-                        t.id = "canvas", t.style.top = 0, t.style.zIndex = 0, t.style.position = "absolute", l.appendChild(t), t.parentElement.style.overflow = "hidden"
-                    }(), (n = document.getElementById("canvas")).width = o, n.height = a, r = n.getContext("2d");
-                for (var t = 0; t < o * d.density; t++) {
-                    var e = new f;
-                    i.push(e)
-                }
-                h()
-            }(), window.addEventListener("scroll", c, !1), window.addEventListener("resize", s, !1)
+    var host = document.getElementById('page-header');
+    if (!host) return;
+    if (host.querySelector('canvas.snow-canvas')) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var canvas = document.createElement('canvas');
+    canvas.className = 'snow-canvas';
+    canvas.setAttribute('aria-hidden', 'true');
+    host.appendChild(canvas);
+
+    var ctx = canvas.getContext('2d');
+    var w = 0;
+    var h = 0;
+    var flakes = [];
+    var frameCount = 0;
+    var cleared = false;
+
+    function makeFlake(above) {
+      return {
+        x: Math.random() * w,
+        y: above ? -rand(0, h * 0.3) : rand(-h, 0),
+        r: rand(CONFIG.minRadius, CONFIG.maxRadius),
+        speed: rand(CONFIG.minSpeed, CONFIG.maxSpeed),
+        alpha: rand(0.35, 0.9),
+        swayAmp: rand(CONFIG.swayAmp * 0.4, CONFIG.swayAmp),
+        swayPhase: Math.random() * Math.PI * 2
+      };
+    }
+
+    function resize() {
+      w = host.clientWidth || host.offsetWidth;
+      h = host.clientHeight || host.offsetHeight;
+      if (!w || !h) return;
+
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.round(w * dpr);
+      canvas.height = Math.round(h * dpr);
+      canvas.style.width = w + 'px';
+      canvas.style.height = h + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      var target = Math.min(Math.round(w / CONFIG.density), CONFIG.maxCount);
+      flakes = [];
+      for (var i = 0; i < target; i++) {
+        flakes.push(makeFlake(false));
+      }
+    }
+
+    function frame() {
+      rafId = requestAnimationFrame(frame);
+
+      // 顶图滚出视口后停止绘制，避免无谓开销
+      if (window.pageYOffset > h) {
+        if (!cleared) {
+          ctx.clearRect(0, 0, w, h);
+          cleared = true;
         }
-    }(jQuery);
+        return;
+      }
+      cleared = false;
 
-    // 调用气泡方法
-    bubble();
-})
+      frameCount++;
+      ctx.clearRect(0, 0, w, h);
+
+      for (var i = 0; i < flakes.length; i++) {
+        var f = flakes[i];
+        f.y += f.speed;
+
+        if (f.y - f.r > h) {
+          flakes[i] = makeFlake(true);
+          continue;
+        }
+
+        var x = f.x + Math.sin(frameCount * CONFIG.swaySpeed + f.swayPhase) * f.swayAmp;
+        var d = f.r * 2.6;
+
+        ctx.globalAlpha = f.alpha;
+        ctx.drawImage(sprite, x - d / 2, f.y - d / 2, d, d);
+      }
+
+      ctx.globalAlpha = 1;
+    }
+
+    resize();
+    frame();
+
+    window.addEventListener('resize', resize, false);
+  }
+
+  function boot() {
+    init();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot, false);
+  } else {
+    boot();
+  }
+
+  // pjax 切换页面后顶图会重建，需要重新挂载
+  document.addEventListener('pjax:complete', boot, false);
+})();
